@@ -16,6 +16,7 @@ import ecommerce.PersistenceManager.PersistenceManager;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,8 +45,8 @@ public class EstadoController {
         this.result.include("estadoList", this.estDao.getAll());
     }
     
-    @Post
-    @Path("/estado/show")
+    
+    @Post("/estado/show")
     public void update (Estado estado){
         this.estDao.startTransaction();
         this.result.include("cidadeList", this.estDao.getAll());
@@ -56,11 +57,18 @@ public class EstadoController {
         result.redirectTo(EstadoController.class).list();
     }
     
-    @Get
-    @Path("/estado/list")
+    
+    @Get("/estado/list")
     public List<Estado> list(){
         
         return this.estDao.getAll();
+    }
+    @Post("/estado/adiciona")
+    public void adiciona(Estado estado){
+        this.estDao.startTransaction();
+        this.estDao.save(estado);
+        this.estDao.commitTransaction();
+        result.redirectTo(EstadoController.class).list();
     }
     
 }
