@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,13 +37,13 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
     @NotNull
     private Cliente cliente; 
     
-    @Column
     @NotNull
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(name = "itens_pedido", joinColumns = {
 	@JoinColumn(name = "id", nullable = false, updatable = false) },
 	inverseJoinColumns = { @JoinColumn(name = "idcarrinho",	
-                nullable = false, updatable = false) })
+                nullable = false, updatable = false) })*/
+    @ElementCollection
     private Map<Produto, Integer> produtos;  
     /* ver com o professor essa logica que ta meio estranho, teria que juntar 3 tabelas, produtos,itens_pedido e carrinho, o carrinho eu consigo
     juntar com o id e itens_pedido mas teria que juntar os produtos, dai nao sei se faço isso na tabela produto ou itens_pedido*/ 

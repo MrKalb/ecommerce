@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.chart.PieChart.Data;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,30 +31,25 @@ public class Venda implements AbstractDto<Integer>,Serializable {
 
     @Id
     @GeneratedValue
-    @ManyToOne
+  /*  @ManyToOne
     @JoinTable(name = "itens_pedido", joinColumns = {
     @JoinColumn(name = "id", nullable = false, updatable = false) },
     inverseJoinColumns = { @JoinColumn(name = "idvenda",	
-     nullable = false, updatable = false) })
+     nullable = false, updatable = false) })*/
      private Integer id; 
     
     @GeneratedValue
-    @ManyToOne
-        @JoinTable(name = "itens_pedido", joinColumns = {
-	@JoinColumn(name = "numero_pedido", nullable = false, updatable = false) },
-	inverseJoinColumns = { @JoinColumn(name = "numero_pedido",	
-        nullable = false, updatable = false) })
     private Integer numeroPedido;
     
     @Column
-    private Data data; 
+    private String data; 
     
+    @ElementCollection
     private Map<Produto,Integer> itensVenda; 
     
     @Column
     private float total; 
     
-    @Column(name="idforma")
     @OneToOne
     @JoinTable(name = "formas_pagamento", joinColumns = {
     @JoinColumn(name = "id", nullable = false, updatable = false) },
@@ -87,14 +83,14 @@ public class Venda implements AbstractDto<Integer>,Serializable {
     /**
      * @return the data
      */
-    public Data getData() {
+    public String getData() {
         return data;
     }
 
     /**
      * @param data the data to set
      */
-    public void setData(Data data) {
+    public void setData(String data) {
         this.data = data;
     }
 

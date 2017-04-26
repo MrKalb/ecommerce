@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,8 +31,7 @@ public class Estoque implements AbstractDto<Integer>,Serializable {
     @Column 
     private Produto produto; 
     
-    @Column
-    @ManyToOne
+   @ElementCollection
     private Map<Produto, Integer > quantidade; 
 
     public Estoque(){

@@ -40,15 +40,14 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     @Column
     private String codbarras; 
     
-    @ManyToMany(fetch = FetchType.LAZY)
-        @JoinTable(name = "tipocategoria", joinColumns = {
-	@JoinColumn(name = "id", nullable = false, updatable = false) },
-	inverseJoinColumns = { @JoinColumn(name = "idcategoria",	
-                nullable = false, updatable = false) })
-    private List Categoria; 
+    //@ManyToMany
+        //@JoinTable(name = "tipocategoria", joinColumns = {
+	//@JoinColumn(name = "id", nullable = false, updatable = false) },
+	//inverseJoinColumns = { @JoinColumn(name = "idcategoria",	
+         //       nullable = false, updatable = false) })
+    private Integer categoria; 
     
     public Produto(){
-        List Categoria = new ArrayList(); 
     }
     
     @Override

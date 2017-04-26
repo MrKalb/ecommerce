@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -18,14 +19,14 @@ import javax.validation.constraints.NotNull;
  * @author igor
  */
 @Entity
+@Table(name = "estado")
 public class Estado implements AbstractDto<Integer>,Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; 
     
-    @Column
-    @NotNull
+    @Column(name = "nome")
     private String descricao; 
     
     @Override

@@ -25,11 +25,8 @@ public class PersistenceManager {
          
         if (PersistenceManager.em == null) {
             
-            Map<String, String> properties = new HashMap<>();
-            properties.put("javax.persistence.jdbc.user", "admin");
-            properties.put("javax.persistence.jdbc.password", "admin");
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory(
-            "postgresql://localhost:5432/ecommerce", properties);
+           
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("ecommerce");
                        
             PersistenceManager.em = emf.createEntityManager();
             
