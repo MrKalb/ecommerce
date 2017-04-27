@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,10 +24,13 @@ import javax.validation.constraints.NotNull;
 public class Estado implements AbstractDto<Integer>,Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "estado_id_seq", sequenceName = "estado_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "estado_id_seq")
+    @Column(name = "id",columnDefinition = "serial")
     private Integer id; 
     
     @Column(name = "nome")
+    @NotNull
     private String descricao; 
     
     @Override

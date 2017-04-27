@@ -24,7 +24,7 @@
                 <tr align="center">
                     
                     <td>${est.id}</td>
-                    <td>${est.nome}</td>
+                    <td>${est.descricao}</td>
                     <td><a href="">editar</a></td>
                     <td><a href="${linkTo[EstadoController].remove(est)}" onclick="return confirm('Deseja realmente excluir ?')" >remover</a></td>
                 </tr> 

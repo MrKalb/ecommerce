@@ -14,7 +14,7 @@
     <body>
         <h1>Adicionando Estado!</h1>
         <form action="${linkTo[EstadoController].adiciona}" method="POST" >
-            Descricao <input type="text" name="descricao.estado">
+            Descricao <input type="text" id="estado.descricao" name="estado.descricao"  >
             <input type="submit" value="salvar"> 
         </form>
     </body>

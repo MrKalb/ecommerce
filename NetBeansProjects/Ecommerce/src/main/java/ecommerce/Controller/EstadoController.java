@@ -46,7 +46,7 @@ public class EstadoController {
     }
     
     @Get
-    @Path("/jsp/estado/adiciona")
+    @Path("/jsp/estado/add")
     public void add(){
         this.result.include("estadoList", this.estDao.getAll());
     }
@@ -69,12 +69,22 @@ public class EstadoController {
         
         return this.estDao.getAll();
     }
-    @Post("/jsp/estado/adiciona")
+    @Post("/jsp/estado/add")
     public void adiciona(Estado estado){
         this.estDao.startTransaction();
         this.estDao.save(estado);
         this.estDao.commitTransaction();
         result.redirectTo(EstadoController.class).list();
+    }
+    
+    
+    @Get("/jsp/estado/list/{estado.id}")
+    public void remove(Estado estado){
+        this.estDao.startTransaction();
+        this.estDao.remove(estado);
+        this.estDao.commitTransaction();
+        this.result.redirectTo(EstadoController.class).list();
+        this.result.include("mensagem", "estado deletado com sucesso");
     }
     
 }
