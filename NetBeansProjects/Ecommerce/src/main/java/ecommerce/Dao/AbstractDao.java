@@ -51,7 +51,7 @@ public abstract class AbstractDao <T extends Serializable & AbstractDto> {
     }
     
     public void remove(T object){         
-        this.em.remove(this.em.contains(object)? object : this.em.merge(object));
+         this.em.remove(this.em.contains(object)? object : (T) this.em.find(object.getClass(), object.getId()));
     }
     
     public List<T> getAll(){

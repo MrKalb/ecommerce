@@ -72,6 +72,13 @@ public class Cidade implements AbstractDto<Integer>,Serializable {
         }
         this.estado = estado;
     }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
     
     
     

@@ -30,7 +30,6 @@ public class Estado implements AbstractDto<Integer>,Serializable {
     private Integer id; 
     
     @Column(name = "nome")
-    @NotNull
     private String descricao; 
     
     @Override
@@ -56,5 +55,12 @@ public class Estado implements AbstractDto<Integer>,Serializable {
         this.descricao = descricao;
        }
        }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
     
 }
