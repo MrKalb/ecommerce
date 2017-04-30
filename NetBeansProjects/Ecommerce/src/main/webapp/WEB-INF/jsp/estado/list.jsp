@@ -30,6 +30,9 @@
                 </tr> 
             </c:forEach>    
         </table>
-        <a href="${linkTo[EstadoController].add}">adicionar</a>
+        <a href="${linkTo[EstadoController].add}">adicionar Estado</a>
+        <br/>
+        <a href="${linkTo[CidadeController].add}">Adicionar cidade</a>
+        
     </body>
 </html>

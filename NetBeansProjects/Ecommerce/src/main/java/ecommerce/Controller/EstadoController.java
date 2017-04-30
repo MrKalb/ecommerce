@@ -44,7 +44,7 @@ public class EstadoController implements Serializable {
     @Get
     @Path("/index.html")
     public void index(){
-        this.result.redirectTo(EstadoController.class).list();
+        this.result.redirectTo(this).list();
     }
     
     @Get
@@ -67,7 +67,7 @@ public class EstadoController implements Serializable {
         est.setDescricao(est.getDescricao());
         this.estDao.save(est);
         this.estDao.commitTransaction();
-        result.redirectTo(EstadoController.class).list();
+        result.redirectTo(this).list();
     }
     
     
@@ -81,7 +81,7 @@ public class EstadoController implements Serializable {
         this.estDao.startTransaction();
         this.estDao.save(estado);
         this.estDao.commitTransaction();
-        result.redirectTo(EstadoController.class).list();
+        result.redirectTo(this).list();
     }
     
     
@@ -91,7 +91,7 @@ public class EstadoController implements Serializable {
         this.estDao.startTransaction();
         this.estDao.remove(estado);
         this.estDao.commitTransaction();
-        this.result.redirectTo(EstadoController.class).list();
+        this.result.redirectTo(this).list();
         //this.result.include("mensagem", "estado deletado com sucesso");
     }
     
