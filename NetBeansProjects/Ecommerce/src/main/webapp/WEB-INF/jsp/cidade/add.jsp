@@ -19,7 +19,7 @@
 
             <input type="text" id="cidade.descricao" name="cidade.descricao" placeholder="Digite o nome da Cidade">
             </br>
-            <select id="cidade" name="cidade.id">
+            <select id="estado" name="estado.id">
                 <c:forEach items="${estadoList}" var="est">
                     <option value="${est.id}">${est.descricao}</option>
                 </c:forEach>
