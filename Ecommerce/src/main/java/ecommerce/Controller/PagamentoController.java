@@ -52,7 +52,7 @@ public class PagamentoController implements Serializable {
 
     }
     
-    @Get("/jsp/cidade/show/{cidade.id}")
+    @Get("/jsp/pagamento/show/{pagamento.id}")
     public FormaPagamento show(FormaPagamento pagamento){
         return this.fpDao.getById(pagamento);
         
@@ -77,12 +77,12 @@ public class PagamentoController implements Serializable {
         this.result.redirectTo(this).list();
     }
     
-    @Get("/jsp/cidade/list")
+    @Get("/jsp/pagamento/list")
     public List<FormaPagamento> list (){
         return this.fpDao.getAll();
     }
     
-    @Get("/jsp/cidade/list/{cidade.id}")
+    @Get("/jsp/pagamento/list/{pagamento.id}")
     public void remove(FormaPagamento pagamento){
         pagamento = fpDao.getById(pagamento);
         fpDao.startTransaction();
