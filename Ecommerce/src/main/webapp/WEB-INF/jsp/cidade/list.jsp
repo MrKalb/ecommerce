@@ -22,6 +22,7 @@
             </tr>
             <c:forEach items="${cidadeList}" var="cid" varStatus="sts">
                 <tr>
+                    <td>${cid.id}</td>
                     <td>${cid.descricao}</td>
                     <td>${cid.estado.descricao}</td>
                     <td> <a href="${linkTo[CidadeController].show(cid)}">Editar</a></td>
