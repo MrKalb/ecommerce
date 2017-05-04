@@ -41,11 +41,6 @@ public class PagamentoController implements Serializable {
         this.fpDao = new FormaPagamentoDao(PersistenceManager.getEntityManager());
     }
     
-    @Get
-    @Path("/")
-    public void index(){
-        this.result.redirectTo(this).list();
-    }
     @Get("/jsp/pagamento/add")
     public void add (){
           this.result.include("estadoList", this.fpDao.getAll());
