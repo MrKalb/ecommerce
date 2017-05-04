@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -19,10 +21,13 @@ import javax.validation.constraints.NotNull;
  * @author igor
  */
 @Entity
+@Table(name = "formas_pagamento")
 public class FormaPagamento implements AbstractDto<Integer>,Serializable {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "formas_pagamento_id_seq", sequenceName = "formas_pagamento_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "formas_pagamento_id_seq")
+    @Column(name = "id",columnDefinition = "serial")
     private Integer id; 
     
     @Column
@@ -46,6 +51,13 @@ public class FormaPagamento implements AbstractDto<Integer>,Serializable {
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     

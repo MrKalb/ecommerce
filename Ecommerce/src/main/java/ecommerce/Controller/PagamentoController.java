@@ -43,12 +43,12 @@ public class PagamentoController implements Serializable {
     
     @Get("/jsp/pagamento/add")
     public void add (){
-          this.result.include("estadoList", this.fpDao.getAll());
-
+        this.result.include("pagamentoList", fpDao.getAll());
     }
     
     @Get("/jsp/pagamento/show/{pagamento.id}")
     public FormaPagamento show(FormaPagamento pagamento){
+        this.result.include("pagamentoList", fpDao.getAll());
         return this.fpDao.getById(pagamento);
         
     }
@@ -56,6 +56,7 @@ public class PagamentoController implements Serializable {
     @Post("/jsp/pagamento/add")
     public void adiciona(FormaPagamento pagamento){
         this.fpDao.startTransaction();
+        this.result.include("pagamentoList", fpDao.getAll());
         this.fpDao.save(pagamento);
         this.fpDao.commitTransaction();
         result.redirectTo(this).list();
@@ -74,6 +75,7 @@ public class PagamentoController implements Serializable {
     
     @Get("/jsp/pagamento/list")
     public List<FormaPagamento> list (){
+        this.result.include("pagamentoList", fpDao.getAll());
         return this.fpDao.getAll();
     }
     
