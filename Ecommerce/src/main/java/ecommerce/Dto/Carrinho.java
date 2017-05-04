@@ -6,7 +6,9 @@
 package ecommerce.Dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -43,18 +45,18 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
 	@JoinColumn(name = "id", nullable = false, updatable = false) },
 	inverseJoinColumns = { @JoinColumn(name = "idcarrinho",	
                 nullable = false, updatable = false) })*/
-    @ElementCollection
-    private Map<Produto, Integer> produtos;  
-    /* ver com o professor essa logica que ta meio estranho, teria que juntar 3 tabelas, produtos,itens_pedido e carrinho, o carrinho eu consigo
-    juntar com o id e itens_pedido mas teria que juntar os produtos, dai nao sei se faço isso na tabela produto ou itens_pedido*/ 
     
+    @ElementCollection
+    private List<ItemPedido> item;  
+    /* ver com o professor essa logica que ta meio estranho, teria que juntar 3 tabelas, produtos,itens_pedido e carrinho, o carrinho eu consigo
+    juntar com o id e itens_pedido mas teria que juntar os produtos, dai nao sei se faço isso na tabela produto ou itens_pedido*/     
     @Override
     public Integer getId() {
         return id; 
     }
 
-    public Carrinho(){
-        this.produtos = new HashMap();
+   public Carrinho(){
+        this.item = new ArrayList<>();
     }
     /**
      * @return the cliente
@@ -73,13 +75,15 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
     /**
      * @return the quantidade
      */
+    /*
     public Map<Produto, Integer> getQuantidade() {
         return produtos;
     }
-
+*/
     /**
      * @param quantidade the quantidade to set
      */
+    /*
     public void setQuantidade(Produto produto, Integer quantidade ) throws Exception {
         if(quantidade <= 0){
             throw new Exception("quantidade nao pode ser negativa");
@@ -88,6 +92,6 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
             this.produtos.put(produto, quantidade); 
         }
     }
-    
+    */
     
 }

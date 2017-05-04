@@ -7,6 +7,7 @@ package ecommerce.Dto;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javafx.scene.chart.PieChart.Data;
 import javax.persistence.Column;
@@ -45,16 +46,13 @@ public class Venda implements AbstractDto<Integer>,Serializable {
     private String data; 
     
     @ElementCollection
-    private Map<Produto,Integer> itensVenda; 
+    private List<ItemPedido> itensVenda; 
+    
     
     @Column
     private float total; 
     
     @OneToOne
-    @JoinTable(name = "formas_pagamento", joinColumns = {
-    @JoinColumn(name = "id", nullable = false, updatable = false) },
-    inverseJoinColumns = { @JoinColumn(name = "idformas_pagamento",	
-                nullable = false, updatable = false) })
     private FormaPagamento forma; 
     
     @Column 
@@ -99,9 +97,10 @@ public class Venda implements AbstractDto<Integer>,Serializable {
      */
     public float getTotal() {
        this.total=0.00f;
-       for(Map.Entry<Produto,Integer> item : this.itensVenda.entrySet()){
-           this.total+= item.getValue() * item.getKey().getVlr_venda();
-    }
+       for(ItemPedido ip : this.getItensVenda()){
+           this.total+= ip.getProduto().getVlr_venda() * ip.getQuantidade();
+           
+       }
         total+=vlrFrete; 
        
         return total;
@@ -119,5 +118,12 @@ public class Venda implements AbstractDto<Integer>,Serializable {
      */
     public void setForma(FormaPagamento forma) {
         this.forma = forma;
+    }
+
+    /**
+     * @return the itensVenda
+     */
+    public List<ItemPedido> getItensVenda() {
+        return itensVenda;
     }
 }

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -40,14 +41,16 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     @Column
     private String codbarras; 
     
-    //@ManyToMany
-        //@JoinTable(name = "tipocategoria", joinColumns = {
-	//@JoinColumn(name = "id", nullable = false, updatable = false) },
-	//inverseJoinColumns = { @JoinColumn(name = "idcategoria",	
-         //       nullable = false, updatable = false) })
-    private Integer categoria; 
+    @ManyToMany
+        @JoinTable(name = "tipocategoria", joinColumns = {
+	@JoinColumn(name = "idcategoria", nullable = false, updatable = false) },
+	inverseJoinColumns = { @JoinColumn(name = "id",	
+        nullable = false, updatable = false) })
+    @ElementCollection
+    private List<Categoria> categoria; 
     
     public Produto(){
+        this.categoria = new ArrayList();
     }
     
     @Override
@@ -104,6 +107,20 @@ public class Produto implements AbstractDto<Integer>,Serializable {
      */
     public void setCodbarras(String codbarras) {
         this.codbarras = codbarras;
+    }
+
+    /**
+     * @return the categoria
+     */
+    public List<Categoria> getCategoria() {
+        return categoria;
+    }
+
+    /**
+     * @param categoria the categoria to set
+     */
+    public void setCategoria(List<Categoria> categoria) {
+        this.categoria = categoria;
     }
     
     

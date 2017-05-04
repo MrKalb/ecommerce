@@ -6,6 +6,7 @@
 package ecommerce.Dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -27,8 +28,7 @@ public class ItemPedido implements AbstractDto<Integer>, Serializable {
     private Integer id; 
     
     @OneToMany
-    @ElementCollection
-    private List<Produto> produto;
+    private Produto produto;
     
     
     @NotNull
@@ -39,7 +39,6 @@ public class ItemPedido implements AbstractDto<Integer>, Serializable {
     
     @OneToOne
     private Venda venda; 
-    
     
     
     @Override
@@ -57,14 +56,14 @@ public class ItemPedido implements AbstractDto<Integer>, Serializable {
     /**
      * @return the produto
      */
-    public List<Produto> getProduto() {
+    public Produto getProduto() {
         return produto;
     }
 
     /**
      * @param produto the produto to set
      */
-    public void setProduto(List<Produto> produto) {
+    public void setProduto(Produto produto) {
         this.produto = produto;
     }
 
