@@ -11,6 +11,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -18,10 +23,13 @@ import javax.validation.constraints.NotNull;
  * @author igor
  */
 @Entity
+@Table(name = "transportadora")
 public class Transportadora implements AbstractDto<Integer>,Serializable {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "transportadora_id_seq", sequenceName = "transportadora_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "transportadora_id_seq")
+    @Column(name = "id",columnDefinition = "serial")
     private Integer id; 
     
     @Column(name = "razao_social")
@@ -33,12 +41,12 @@ public class Transportadora implements AbstractDto<Integer>,Serializable {
     @Column
     private String endereco;
     
-    @Column(name="idcidade")
+    @JoinColumn(name="idcidade")
+    @OneToOne
     private Cidade cidade;
     
-    @Column
-    @NotNull
-    private String CNPJ; 
+    @Column(name = "cnpj")
+    private String cnpj; 
     
     
     
@@ -104,23 +112,30 @@ public class Transportadora implements AbstractDto<Integer>,Serializable {
     }
 
     /**
-     * @return the CNPJ
+     * @return the cnpj
      */
-    public String getCNPJ() {
-        return CNPJ;
+    public String getCnpj() {
+        return cnpj;
     }
 
     /**
-     * @param CNPJ the CNPJ to set
+     * @param cnpj the cnpj to set
      */
-    public void setCNPJ(String CNPJ) throws Exception {
-       if(ValidaCNPJ.isCNPJ(CNPJ)){
-        this.CNPJ = CNPJ;   
+    public void setCnpj(String cnpj) throws Exception {
+       if(ValidaCNPJ.isCNPJ(cnpj)){
+        this.cnpj = cnpj;   
        }
        else { 
           throw new Exception("CNPJ errado");
        }
         
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
     
 }

@@ -30,7 +30,7 @@ public class CategoriaController implements Serializable {
     private final CategoriaDao catDao; 
     
     
-    private static final Logger log = LoggerFactory.getLogger(CidadeController.class);
+    private static final Logger log = LoggerFactory.getLogger(CategoriaController.class);
     
     @Inject
     Result result; 

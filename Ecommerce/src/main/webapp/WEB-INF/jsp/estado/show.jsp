@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Atualizando - Estado</title>
+        <title>Lujinha</title>
     </head>
     <body>
          <div class="content">

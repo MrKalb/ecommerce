@@ -47,11 +47,8 @@ public class Produto implements AbstractDto<Integer>,Serializable {
 	inverseJoinColumns = { @JoinColumn(name = "id",	
         nullable = false, updatable = false) })
     @ElementCollection
-    private List<Categoria> categoria; 
+    private Categoria categoria; 
     
-    public Produto(){
-        this.categoria = new ArrayList();
-    }
     
     @Override
     public Integer getId() {
@@ -112,15 +109,22 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     /**
      * @return the categoria
      */
-    public List<Categoria> getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
     /**
      * @param categoria the categoria to set
      */
-    public void setCategoria(List<Categoria> categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     

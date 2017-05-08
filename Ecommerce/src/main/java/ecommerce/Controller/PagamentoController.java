@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 public class PagamentoController implements Serializable {
     private final FormaPagamentoDao fpDao;
     
-    private static final Logger log = LoggerFactory.getLogger(CidadeController.class);
+    private static final Logger log = LoggerFactory.getLogger(PagamentoController.class);
     
     @Inject
     Result result; 
