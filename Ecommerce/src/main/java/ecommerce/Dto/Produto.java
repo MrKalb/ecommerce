@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -41,13 +42,13 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     @Column
     private String codbarras; 
     
-    @ManyToMany
+    @OneToMany
         @JoinTable(name = "tipocategoria", joinColumns = {
 	@JoinColumn(name = "idcategoria", nullable = false, updatable = false) },
 	inverseJoinColumns = { @JoinColumn(name = "id",	
         nullable = false, updatable = false) })
     @ElementCollection
-    private Categoria categoria; 
+    private List<Categoria> categoria; 
     
     
     @Override
@@ -106,25 +107,26 @@ public class Produto implements AbstractDto<Integer>,Serializable {
         this.codbarras = codbarras;
     }
 
-    /**
-     * @return the categoria
-     */
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    /**
-     * @param categoria the categoria to set
-     */
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
-    }
 
     /**
      * @param id the id to set
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     * @return the categoria
+     */
+    public List<Categoria> getCategoria() {
+        return categoria;
+    }
+
+    /**
+     * @param categoria the categoria to set
+     */
+    public void setCategoria(List<Categoria> categoria) {
+        this.categoria = categoria;
     }
     
     

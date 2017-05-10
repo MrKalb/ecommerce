@@ -13,6 +13,8 @@ import ecommerce.Dto.Categoria;
 import ecommerce.Dto.Produto;
 import ecommerce.PersistenceManager.PersistenceManager;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -53,12 +55,29 @@ public class ProdutoController implements Serializable {
         this.prDao.startTransaction();
         this.result.include("categoriaList", this.catDao.getAll());
         this.result.include("produtoList", this.prDao.getAll());
-        produto.setCategoria(catDao.getById(produto.getCategoria()));
         this.prDao.save(produto);
         this.prDao.commitTransaction();
         this.result.redirectTo(this).list();
     }
+
+    
+    public void adicionaCategoria(Produto produto, Categoria categoria[]){
         
+        Produto p;
+        p = prDao.getById(produto);
+        
+        
+         p.getCategoria().addAll(Arrays.asList(categoria));
+        
+        
+        
+        
+        
+        Categoria cat = new Categoria();
+        
+       
+        
+    }
        
     
     
