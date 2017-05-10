@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import org.slf4j.MDC;
 
 /**
@@ -28,15 +29,11 @@ public class Estoque implements AbstractDto<Integer>,Serializable {
     @GeneratedValue
     private Integer id; 
     
-    @Column 
+    @OneToOne
     private Produto produto; 
     
-   @ElementCollection
-    private Map<Produto, Integer > quantidade; 
+    private float quantidade; 
 
-    public Estoque(){
-        quantidade = new HashMap();
-    }
     
     @Override
     public Integer getId() {
@@ -60,28 +57,18 @@ public class Estoque implements AbstractDto<Integer>,Serializable {
     /**
      * @return the quantidade
      */
-    public Map<Produto, Integer> getQuantidade() {
+    public float getQuantidade() {
         return quantidade;
     }
 
     /**
      * @param quantidade the quantidade to set
      */
-    public void setQuantidade(Produto produto, Integer quantidade) throws Exception {
-        int i;   
-       /* try{
-                 i = Integer.parseInt(quantidade);
-            }
-            catch(NumberFormatException erro){
-                throw new Exception("Problema para converter numeros,contate o suporte tecnico");
-            }*/
-            if (quantidade <= 0){
-                throw new Exception("Quantidade nao pode ser negativa");
-            }
-            
-            else{
-                  this.quantidade.put(produto, quantidade );
-            }
+    public void setQuantidade(float quantidade) {
+        this.quantidade = quantidade;
     }
+
+
+
     
 }

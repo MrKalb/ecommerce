@@ -5,6 +5,7 @@
  */
 package ecommerce.Controller;
 
+import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Result;
 import ecommerce.Dao.CategoriaDao;
@@ -12,16 +13,20 @@ import ecommerce.Dao.ProdutoDao;
 import ecommerce.Dto.Categoria;
 import ecommerce.Dto.Produto;
 import ecommerce.PersistenceManager.PersistenceManager;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 /**
  *
  * @author igor
  */
-public class AdicionaController {
+@Controller
+@SessionScoped
+public class AdicionaController implements Serializable {
     
     
            
@@ -36,21 +41,22 @@ public class AdicionaController {
     }
     
     
-       public void adicionaCategoria(Produto produto, Categoria categoria[]){
+       public void adicionaCategoria(Produto produto, Categoria categoria){
         
+        prDao.startTransaction();
         this.result.include("categoriaList", this.catDao.getAll());
         this.result.include("produtoList", this.prDao.getAll());
-           
-           Produto p;
-          
+        Produto p;  
         p = prDao.getById(produto);
-        
-        
-         p.getCategoria().addAll(Arrays.asList(categoria));
+        p.getCategoria().add(categoria);
+        prDao.save(p);
+        prDao.commitTransaction();
+        this.result.redirectTo(ProdutoController.class).list();
+         //p.getCategoria().addAll(Arrays.asList(categoria));
               
         
     }
-    @Get("/show/purgeItemShow/{show.id}/{itemShow.id}")
+    @Get("/show/purgeItemShow/{produto.id}/{categoria.id}")
     public void purgeItemShow(Produto produto, final Categoria categoria) {
         Produto p = this.prDao.getById(produto);
         this.prDao.startTransaction();

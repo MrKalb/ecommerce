@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -30,23 +31,25 @@ import javax.persistence.Table;
 public class Produto implements AbstractDto<Integer>,Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "produto_id_seq", sequenceName = "produto_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "produto_id_seq")
+    @Column(name = "id",columnDefinition = "serial")
     private Integer id; 
     
     @Column
     private String descricao; 
     
-    @Column
-    private float vlr_venda; 
+    @Column(name = "vlr_venda")
+    private float vlrVenda; 
     
-    @Column
-    private String codbarras; 
+    @Column(name = "cod_barras")
+    private String codBarras; 
     
     @OneToMany
-        @JoinTable(name = "tipocategoria", joinColumns = {
-	@JoinColumn(name = "idcategoria", nullable = false, updatable = false) },
-	inverseJoinColumns = { @JoinColumn(name = "id",	
-        nullable = false, updatable = false) })
+        @JoinTable(
+        name="tipocategoria",
+      joinColumns={ @JoinColumn(name="idcategoria", referencedColumnName="id") },
+      inverseJoinColumns={ @JoinColumn(name="idproduto", referencedColumnName="id", unique=true)})
     @ElementCollection
     private List<Categoria> categoria; 
     
@@ -78,33 +81,30 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     /**
      * @return the vlr_venda
      */
-    public float getVlr_venda() {
-        return vlr_venda;
+    public float getVlrVenda() {
+        return vlrVenda;
     }
 
     /**
      * @param vlr_venda the vlr_venda to set
      */
-    public void setVlr_venda(float vlr_venda) throws Exception {
-        if(vlr_venda <= 0){
-            throw new Exception("Produto não pode ter valor negativo ou zerado");
-        }
+    public void setVlrVenda(float vlrVenda) {
         
-        this.vlr_venda = vlr_venda;
+        this.vlrVenda = vlrVenda;
     }
 
     /**
      * @return the codbarras
      */
-    public String getCodbarras() {
-        return codbarras;
+    public String getCodBarras() {
+        return codBarras;
     }
 
     /**
      * @param codbarras the codbarras to set
      */
-    public void setCodbarras(String codbarras) {
-        this.codbarras = codbarras;
+    public void setCodbarras(String codBarras) {
+        this.codBarras = codBarras;
     }
 
 

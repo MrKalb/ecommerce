@@ -98,7 +98,7 @@ public class Venda implements AbstractDto<Integer>,Serializable {
     public float getTotal() {
        this.total=0.00f;
        for(ItemPedido ip : this.getItensVenda()){
-           this.total+= ip.getProduto().getVlr_venda() * ip.getQuantidade();
+           this.total+= ip.getProduto().getVlrVenda() * ip.getQuantidade();
            
        }
         total+=vlrFrete; 

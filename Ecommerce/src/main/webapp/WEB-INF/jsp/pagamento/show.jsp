@@ -14,10 +14,10 @@
     <body>
         <h1>Editando Forma</h1>
         <form action="${linkTo[PagamentoController].update}" method="POST">
-                <input type="hidden" name="pagamento.id" value="${pagamento.id}"/>
+                <input type="hidden" name="pagamento.id" value="${formaPagamento.id}"/>
                 <label for="pagamento.descricao">Descricao</label>
                 <br/>
-                <input type="text" value="${pagamento.descricao}"  id="pagamento.descricao" name="pagamento.descricao"/>            
+                <input type="text" value="${formaPagamento.descricao}"  id="pagamento.descricao" name="pagamento.descricao"/>            
                 <br/>
                 <input type="submit" value="salvar"> 
             </form>
