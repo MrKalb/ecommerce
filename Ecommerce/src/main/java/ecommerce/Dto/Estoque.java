@@ -14,8 +14,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import org.slf4j.MDC;
 
 /**
@@ -26,12 +28,16 @@ import org.slf4j.MDC;
 public class Estoque implements AbstractDto<Integer>,Serializable {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "estoque_id_seq", sequenceName = "estoque_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "estoque_id_seq")
+    @Column(name = "id",columnDefinition = "serial")
     private Integer id; 
     
     @OneToOne
+    @JoinColumn(name="idproduto")
     private Produto produto; 
     
+    @Column
     private float quantidade; 
 
     
