@@ -17,9 +17,9 @@
         <form action="${linkTo[ProdutoController].adiciona}" method="POST">
         <input type="text" id="produto.descricao" name="produto.descricao" placeholder="Digite a descricao">  
         </br>
-        <input type="text" id="produto.VlrVenda" name="produto.vlrvenda" placeholder="Digite o valor">
+        <input type="text" id="produto.vlrVenda" name="produto.vlrVenda" placeholder="Digite o valor">
         </br>
-        <input type="text" id="produto.codbarras" name="produto.codbarras" placeholder="Digite o codigo de barras">
+        <input type="text" id="produto.codBarras" name="produto.codBarras" placeholder="Digite o codigo de barras">
         </br>
         <input type="submit" value="Salvar">
         </form>

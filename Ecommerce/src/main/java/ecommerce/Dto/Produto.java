@@ -21,6 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -42,6 +43,7 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     @Column(name = "vlr_venda")
     private float vlrVenda; 
     
+    @NotNull
     @Column(name = "cod_barras")
     private String codBarras; 
     
@@ -86,7 +88,7 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     }
 
     /**
-     * @param vlr_venda the vlr_venda to set
+     * @param vlrVenda the vlrVenda to set
      */
     public void setVlrVenda(float vlrVenda) {
         
@@ -101,7 +103,7 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     }
 
     /**
-     * @param codbarras the codbarras to set
+     * @param codBarras the codBarras to set
      */
     public void setCodbarras(String codBarras) {
         this.codBarras = codBarras;

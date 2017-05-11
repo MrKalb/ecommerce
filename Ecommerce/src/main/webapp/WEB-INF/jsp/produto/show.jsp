@@ -24,7 +24,7 @@
         </br>
         <input type="text" name="produto.vlrVenda" value="${produto.vlrVenda}" id="produto.vlrVenda">
         </br>
-        <label for="produto.codBarras">Valor</label>
+        <label for="produto.codBarras">CodBarras</label>
         </br>
         <input type="text" name="produto.codBarras" value="${produto.codBarras}" id="produto.codBarras">
         </br>

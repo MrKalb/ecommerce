@@ -7,6 +7,7 @@ package ecommerce.Controller;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import ecommerce.Dao.CategoriaDao;
 import ecommerce.Dao.ProdutoDao;
@@ -40,24 +41,29 @@ public class AdicionaController implements Serializable {
         this.catDao = new CategoriaDao(PersistenceManager.getEntityManager());
     }
     
-    
-       public void adicionaCategoria(Produto produto, Categoria categoria){
+       @Post("/jsp/adiciona/add")
+       public void adicionaCategoria(Integer prId, Integer ctId, Categoria categoria){
         
-        prDao.startTransaction();
         this.result.include("categoriaList", this.catDao.getAll());
         this.result.include("produtoList", this.prDao.getAll());
-        Produto p;  
-        p = prDao.getById(produto);
-        p.getCategoria().add(categoria);
-        prDao.save(p);
+        Produto p = null;
+        Categoria c = null; 
+        p.setId(prId);
+        c.setId(ctId);
+        
+        p = prDao.getById(p);
+        c = catDao.getById(c);
+        p.getCategoria().add(c);
+        prDao.startTransaction();
+        p.getCategoria().add(c);
         prDao.commitTransaction();
         this.result.redirectTo(ProdutoController.class).list();
          //p.getCategoria().addAll(Arrays.asList(categoria));
               
         
     }
-    @Get("/show/purgeItemShow/{produto.id}/{categoria.id}")
-    public void purgeItemShow(Produto produto, final Categoria categoria) {
+  //  @Get("/show/add/{produto.id}/{categoria.id}")
+    public void removeitem(Produto produto, final Categoria categoria) {
         Produto p = this.prDao.getById(produto);
         this.prDao.startTransaction();
 
@@ -71,6 +77,12 @@ public class AdicionaController implements Serializable {
         this.prDao.commitTransaction();
         this.result.redirectTo(ProdutoController.class).list();
     }
+    
+    @Get("/jsp/produto/add/{produto.id}")
+    public Produto show(Produto produto){
+        return this.prDao.getById(produto);
+    } 
+    
     
        
 }

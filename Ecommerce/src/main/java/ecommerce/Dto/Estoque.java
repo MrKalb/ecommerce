@@ -68,6 +68,13 @@ public class Estoque implements AbstractDto<Integer>,Serializable {
         this.quantidade = quantidade;
     }
 
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
 
 
     
