@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
@@ -73,6 +74,11 @@ public abstract class AbstractDao <T extends Serializable & AbstractDto> {
     
     public EntityManager getEntityManager(){
         return this.em;
+    }
+    
+        public List<T> getByCriteria(CriteriaQuery<T> query) {
+        TypedQuery<T> ret = this.em.createQuery(query);
+        return ret.getResultList();
     }
     
 }

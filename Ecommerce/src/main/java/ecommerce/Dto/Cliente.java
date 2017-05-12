@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -21,7 +24,9 @@ import javax.validation.constraints.NotNull;
 public class Cliente implements AbstractDto<Integer>, Serializable{
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "cliente_id_seq", sequenceName = "cliente_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "cliente_id_seq")
+    @Column(name = "id",columnDefinition = "serial")
     private Integer id; 
     
     @Column
@@ -34,7 +39,7 @@ public class Cliente implements AbstractDto<Integer>, Serializable{
     
     @Column(name="endereco_de_entrega")
     @NotNull
-    private String endereco_entrega; 
+    private String enderecoEntrega; 
     
     @Column
     @NotNull
@@ -48,8 +53,9 @@ public class Cliente implements AbstractDto<Integer>, Serializable{
     @NotNull
     private String CPF; 
     
-    @Column(name="idcidade")
+    @JoinColumn(name="idcidade")
     @NotNull
+    @OneToOne
     private Cidade cidade; 
     
     @Override
@@ -149,15 +155,15 @@ public class Cliente implements AbstractDto<Integer>, Serializable{
     /**
      * @return the endereco_entrega
      */
-    public String getEndereco_entrega() {
-        return endereco_entrega;
+    public String getEnderecoEntrega() {
+        return enderecoEntrega;
     }
 
     /**
      * @param endereco_entrega the endereco_entrega to set
      */
-    public void setEndereco_entrega(String endereco_entrega) {
-        this.endereco_entrega = endereco_entrega;
+    public void setEnderecoEntrega(String endereco_entrega) {
+        this.enderecoEntrega = endereco_entrega;
     }
     
     
