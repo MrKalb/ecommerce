@@ -16,27 +16,27 @@
         <h1>Adicionando Transportadora</h1>
         <form action="${linkTo[TransportadoraController].adiciona}" method="POST">
             <label for="transportadora.razao">Razao Social </label>
-            </br>
+            <br>
             <input type="text" id="transportadora.razao" name="transportadora.razao">
-            </br>
+            <br>
             <label for="transportadora.fantasia">Nome Fantasia</label>
-            </br>
+            <br>
             <input type="text" id="transportadora.fantasia" name="transportadora.fantasia">
-            </br>
+            <br>
             <label for="transportadora.endereco">Endereco</label>
-            </br>
+            <br>
             <input type="text" id="transportadora.endereco" name="transportadora.endereco">
-            </br>
+            <br>
             <label for="transportadora.cnpj">CNPJ</label>
-            </br>
+            <br>
             <input type="text" id="transportadora.cnpj" name="transportadora.cnpj"> 
-            </br>
+            <br>
             <select id="cidade" name="transportadora.cidade.id">
                 <c:forEach items="${cidadeList}" var="cid">
                     <option value="${cid.id}">${cid.descricao}</option>
                 </c:forEach>
             </select>
-            </br>
+            <br>
             <input type="submit" value="Salvar">
         </form>
     </body>

@@ -18,13 +18,13 @@
         <form action="${linkTo[CidadeController].adiciona}" method="POST">
 
             <input type="text" id="cidade.descricao" name="cidade.descricao" placeholder="Digite o nome da Cidade">
-            </br>
+            <br>
             <select id="estado" name="cidade.estado.id">
                 <c:forEach items="${estadoList}" var="est">
                     <option value="${est.id}">${est.descricao}</option>
                 </c:forEach>
             </select>
-            </br>
+            <br>
             <input type="submit" value="salvar">
         </form>
     </body>

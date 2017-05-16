@@ -43,7 +43,6 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     @Column(name = "vlr_venda")
     private float vlrVenda; 
     
-    @NotNull
     @Column(name = "cod_barras")
     private String codBarras; 
     
@@ -105,7 +104,7 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     /**
      * @param codBarras the codBarras to set
      */
-    public void setCodbarras(String codBarras) {
+    public void setCodBarras(String codBarras) {
         this.codBarras = codBarras;
     }
 

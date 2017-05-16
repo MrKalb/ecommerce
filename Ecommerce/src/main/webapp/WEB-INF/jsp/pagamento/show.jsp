@@ -16,9 +16,9 @@
         <form action="${linkTo[PagamentoController].update}" method="POST">
                 <input type="hidden" name="pagamento.id" value="${formaPagamento.id}"/>
                 <label for="pagamento.descricao">Descricao</label>
-                <br/>
+                <br>
                 <input type="text" value="${formaPagamento.descricao}"  id="pagamento.descricao" name="pagamento.descricao"/>            
-                <br/>
+                <br>
                 <input type="submit" value="salvar"> 
             </form>
     </body>

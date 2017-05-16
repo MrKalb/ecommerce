@@ -16,17 +16,17 @@
         <h1>Estoque</h1>
         <form action="${linkTo[EstoqueController].adiciona}" method="POST">
             <label for="produto">Escolha o produto</label>
-            </br>
+            <br>
             <select id="produto" name="estoque.produto.id">
                 <c:forEach items="${produtoList}" var="prod">
                     <option value="${prod.id}">${prod.descricao}</option>
                 </c:forEach>
             </select>
-            </br>
+            <br>
             <label for="estoque.quantidade">Quantidade</label>
-            </br>
+            <br>
             <input type="text" id="estoque.quantidade" name="estoque.quantidade">
-            </br>
+            <br>
             <input type="submit" value="Salvar">  
         </form>
     </body>

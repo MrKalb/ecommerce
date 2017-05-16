@@ -17,17 +17,17 @@
         <form action="${linkTo[CidadeController].update}" method="POST">
             <input type="hidden" name="cidade.id" value="${cidade.id}"/>
             <label for="cidade.descricao">Descricao</label> 
-            </br>
+            <br>
             <input type="text" value="${cidade.descricao}" id="cidade.descricao" name="cidade.descricao">
-            </br>
+            <br>
             <label for="estado">Escolha o estado</label>
-            </br>
+            <br>
             <select id="estado" name="cidade.estado.id">
                 <c:forEach items="${estadoList}" var="est">
                     <option value="${est.id}">${est.descricao}</option>
                 </c:forEach>
             </select>
-            </br>
+            <br>
             <input type="submit" value="salvar">
             
         </form>

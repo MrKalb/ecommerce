@@ -17,9 +17,9 @@
             <form action="${linkTo[EstadoController].update}" method="POST">
                 <input type="hidden" name="estado.id" value="${estado.id}"/>
                 <label for="estado.descricao">Descricao</label>
-                <br/>
+                <br>
                 <input type="text" value="${estado.descricao}"  id="estado.descricao" name="estado.descricao"/>            
-                <br/>
+                <br>
                 <input type="submit" value="salvar"> 
             </form>
          </div>

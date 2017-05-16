@@ -17,27 +17,27 @@
         <form action="${linkTo[TransportadoraController].update}" method="POST">
             <input type="hidden" name="transportadora.id" value="${transportadora.id}"/>
             <label for="transportadora.razao">Razao</label>            
-            </br>
+            <br>
             <input type="text" value="${transportadora.razao}"  id="transportadora.razao" name="transportadora.razao"/>
-            </br>
+            <br>
             <label for="transportadora.fantasia">Fantasia</label>
-            </br>
+            <br>
             <input type="text" value="${transportadora.fantasia}"  id="transportadora.fantasia" name="transportadora.fantasia"/>  
-            </br>
+            <br>
             <label for="transportadora.endereco">Endereco</label> 
-            </br>
+            <br>
             <input type="text" value="${transportadora.endereco}"  id="transportadora.endereco" name="transportadora.endereco"/>     
-            </br>
+            <br>
             <label for="transportadora.cnpj">CNPJ</label>            
-            </br>
+            <br>
             <input type="text" value="${transportadora.cnpj}"  id="transportadora.cnpj" name="transportadora.cnpj"/>     
-            </br>
+            <br>
             <select id="cidade" name="transportadora.cidade.id">
                 <c:forEach items="${cidadeList}" var="cid">
                     <option value="${cid.id}">${cid.descricao}</option>
                 </c:forEach>
             </select>
-            </br>
+            <br>
             <input type="submit" value="Salvar">
 
         </form>

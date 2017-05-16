@@ -15,19 +15,19 @@
         <h1>Editando Produto</h1>
         <form action="${linkTo[ProdutoController].update}" method="POST">
         <input type="hidden" name="produto.id" value="${produto.id}"/>
-        </br>
+        <br>
         <label for="produto.descricao">Descricao</label>
-        </br>
+        <br>
         <input type="text" name="produto.descricao" value="${produto.descricao}" id="produto.descricao">
-        </br>
+        <br>
         <label for="produto.vlrVenda">Valor</label>
-        </br>
+        <br>
         <input type="text" name="produto.vlrVenda" value="${produto.vlrVenda}" id="produto.vlrVenda">
-        </br>
+        <br>
         <label for="produto.codBarras">CodBarras</label>
-        </br>
+        <br>
         <input type="text" name="produto.codBarras" value="${produto.codBarras}" id="produto.codBarras">
-        </br>
+        <br>
         <input type="submit" value="salvar">
         </form>
         

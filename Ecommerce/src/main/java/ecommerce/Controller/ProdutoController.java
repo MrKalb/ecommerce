@@ -71,7 +71,7 @@ public class ProdutoController implements Serializable {
     Produto pr = prDao.getById(produto);
     pr.setDescricao(produto.getDescricao());
     pr.setVlrVenda(produto.getVlrVenda());
-    pr.setCodbarras(produto.getCodBarras());
+    pr.setCodBarras(produto.getCodBarras());
     this.prDao.save(pr);
     this.prDao.commitTransaction();
     this.result.redirectTo(this).list();

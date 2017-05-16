@@ -16,19 +16,19 @@
         <h1>Auditoria</h1>
         <form action="${linkTo[EstoqueController].update}" method="POST">
             <input type="hidden" name="estoque.id" value="${estoque.id}"/>
-            </br>
+            <br>
             <label for="produto">Escolha o produto</label>
-            </br>
+            <br>
             <select id="produto" name="estoque.produto.id">
                 <c:forEach items="${produtoList}" var="prod">
                     <option value="${prod.id}">${prod.descricao}</option>
                 </c:forEach>
             </select>
-            </br>
+            <br>
             <label for="quantidade">Digite a quantidade</label>
-            </br>
+            <br>
             <input type="text" id="quantidade" name="quantidade">
-            </br>
+            <br>
             <input type="submit" value="Salvar">
         </form>
     </body>
