@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -17,19 +18,23 @@ import javax.validation.constraints.NotNull;
  * @author igor
  */
 @Entity
+@Table(name = "Usuario")
 public class Usuario implements AbstractDto<Integer>, Serializable{
+
     
     @Id
     @GeneratedValue
     private Integer id;
     
-    @Column
+    @Column(name = "login")
     @NotNull
     private String email;
     
-    @Column
+    @Column(name = "senha")
     @NotNull
     private String password;
+    
+    private Cliente cliente; 
     
     
 
@@ -41,14 +46,19 @@ public class Usuario implements AbstractDto<Integer>, Serializable{
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+        /**
+     * @return the cliente
+     */
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
-    
 
     @Override
     public Integer getId() {

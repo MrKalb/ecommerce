@@ -36,14 +36,16 @@
                 </c:forEach>
             </select>
             <br>
-            <input type="submit" value="Salvar">
         </form>
             <br>
             <br>
             <br>
             <form action="${linkTo[ClienteController].createUsuario}" method="POST">
-                <input type="text" id="usuario.email"
-            
+                <input type="text" id="usuario.email" placeholder="Email">
+                <br>
+                <input type="password" id="usuario.password" placeholder="senha">
+                <br>
+                <input type="submit" value="Salvar">
             </form>
     </body>
 </html>
