@@ -49,6 +49,7 @@ public class ClienteController implements Serializable {
         this.uDao = new UsuarioDao(PersistenceManager.getEntityManager());
     }
     
+    @Get("/jsp/cliente/add")
     public void add(){
         this.result.include("cidadeList", this.cidDao.getAll());
     }
@@ -57,36 +58,38 @@ public class ClienteController implements Serializable {
         return this.clDao.getAll();
     }
     
+    @Post("/jsp/cliente/add")
     public void adiciona(Cliente cliente){
         this.result.include("cidadeList",this.cidDao.getAll());
         this.clDao.startTransaction();
         cliente.setCidade(cidDao.getById(cliente.getCidade()));
         this.clDao.save(cliente);
         this.clDao.commitTransaction();
-        this.result.redirectTo(this).list();
+        this.result.redirectTo(ProdutoController.class).list();
     }
     
        
-    @Get("/jsp/categoria/show/{categoria.id}")
+    //@Get("/jsp/cliente/show/{cliente.id}")
     public Cliente show(Cliente cliente){
         this.result.include("categoriaLista", this.clDao.getAll());
         return this.clDao.getById(cliente);
     }
     
+    @Post("/jsp/cliente/update")
     public void update (Cliente cliente) throws Exception{
         this.result.include("cidadeList", cidDao.getAll());
         this.result.include("clienteList",clDao.getAll());
         Cliente c = clDao.getById(cliente);
         c.setNome(cliente.getNome());
         c.setEndereco(cliente.getEndereco());
-        c.setCEP(cliente.getCEP());
+        c.setCep(cliente.getCep());
         c.setCidade(cidDao.getById(cliente.getCidade()));
         c.setEnderecoEntrega(cliente.getEnderecoEntrega());
         c.setContato(cliente.getContato());
-        c.setCPF(cliente.getCPF());
+        c.setCpf(cliente.getCpf());
         this.clDao.save(c);
         this.clDao.commitTransaction();
-        this.result.redirectTo(this).list();
+        this.result.redirectTo(ProdutoController.class).list();
     }
     
     

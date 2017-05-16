@@ -29,11 +29,11 @@ public class Cliente implements AbstractDto<Integer>, Serializable{
     @Column(name = "id",columnDefinition = "serial")
     private Integer id; 
     
-    @Column
+    @Column(name = "nome")
     @NotNull
     private String nome; 
     
-    @Column
+    @Column(name = "endereco")
     @NotNull
     private String endereco;
     
@@ -41,20 +41,19 @@ public class Cliente implements AbstractDto<Integer>, Serializable{
     @NotNull
     private String enderecoEntrega; 
     
-    @Column
+    @Column(name = "cep")
     @NotNull
-    private String CEP; 
+    private String cep; 
     
-    @Column
+    @Column(name = "contato")
     @NotNull
     private String contato; 
     
-    @Column
+    @Column(name = "cpf")
     @NotNull
-    private String CPF; 
+    private String cpf; 
     
     @JoinColumn(name="idcidade")
-    @NotNull
     @OneToOne
     private Cidade cidade; 
     
@@ -94,15 +93,15 @@ public class Cliente implements AbstractDto<Integer>, Serializable{
     /**
      * @return the CEP
      */
-    public String getCEP() {
-        return CEP;
+    public String getCep() {
+        return cep;
     }
 
     /**
      * @param CEP the CEP to set
      */
-    public void setCEP(String CEP) {
-        this.CEP = CEP;
+    public void setCep(String CEP) {
+        this.cep = CEP;
     }
 
     /**
@@ -122,17 +121,17 @@ public class Cliente implements AbstractDto<Integer>, Serializable{
     /**
      * @return the CPF
      */
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
     /**
      * @param CPF the CPF to set
      */
-    public void setCPF(String CPF) throws Exception {
+    public void setCpf(String CPF) throws Exception {
         if(ValidaCPF.isCPF(CPF)){
-            this.CPF = CPF;
-        }
+            this.cpf = CPF;
+        }   
         else {
             throw new Exception("CPF errado"); 
         }
@@ -164,6 +163,13 @@ public class Cliente implements AbstractDto<Integer>, Serializable{
      */
     public void setEnderecoEntrega(String endereco_entrega) {
         this.enderecoEntrega = endereco_entrega;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     

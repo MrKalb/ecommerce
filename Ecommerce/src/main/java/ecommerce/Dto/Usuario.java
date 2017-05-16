@@ -29,11 +29,6 @@ public class Usuario implements AbstractDto<Integer>, Serializable{
     
     @Column
     @NotNull
-    private String name;
-    
-    
-    @Column
-    @NotNull
     private String password;
     
     
