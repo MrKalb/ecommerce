@@ -59,13 +59,14 @@ public class ClienteController implements Serializable {
     }
     
     @Post("/jsp/cliente/add")
-    public void adiciona(Cliente cliente){
+    public void adiciona(Cliente cliente, Usuario usuario){
         this.result.include("cidadeList",this.cidDao.getAll());
         this.clDao.startTransaction();
         cliente.setCidade(cidDao.getById(cliente.getCidade()));
         this.clDao.save(cliente);
         this.clDao.commitTransaction();
-        this.result.redirectTo(ProdutoController.class).list();
+        this.createUsuario(usuario,cliente);
+        this.result.redirectTo(this).login();
     }
     
        
@@ -121,10 +122,10 @@ public class ClienteController implements Serializable {
         
     }
     
-    public void createUsuario(Usuario usuario){
+    private void createUsuario(Usuario usuario,Cliente cliente){
         this.uDao.startTransaction();
+         usuario.setCliente(clDao.getById(cliente));
         this.uDao.save(usuario);
         this.uDao.commitTransaction();
-        this.result.redirectTo(ProdutoController.class).list();
     }
 }

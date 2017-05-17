@@ -32,6 +32,7 @@ import org.slf4j.LoggerFactory;
 public class ProdutoController implements Serializable {
        
     private final ProdutoDao prDao;  
+    private final CategoriaDao catDao; 
     
     private static final Logger log = LoggerFactory.getLogger(CategoriaController.class);
     
@@ -40,6 +41,7 @@ public class ProdutoController implements Serializable {
     
     public ProdutoController(){
         this.prDao= new ProdutoDao(PersistenceManager.getEntityManager());
+        this.catDao = new CategoriaDao(PersistenceManager.getEntityManager());
     }
         
         @Get("/jsp/produto/add")
@@ -61,6 +63,7 @@ public class ProdutoController implements Serializable {
     
     @Get("/jsp/produto/show/{produto.id}")
     public Produto show(Produto produto){
+        this.result.include("categoriaList", this.catDao.getAll());
         return this.prDao.getById(produto);
     } 
     

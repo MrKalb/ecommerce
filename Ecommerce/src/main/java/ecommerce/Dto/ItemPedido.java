@@ -36,8 +36,6 @@ public class ItemPedido implements AbstractDto<Integer>, Serializable {
     @NotNull
     private int quantidade; 
     
-    @OneToOne
-    private Carrinho carrinho;
     
     @OneToOne
     private Venda venda; 
@@ -83,19 +81,6 @@ public class ItemPedido implements AbstractDto<Integer>, Serializable {
         this.quantidade = quantidade;
     }
 
-    /**
-     * @return the carrinho
-     */
-    public Carrinho getCarrinho() {
-        return carrinho;
-    }
-
-    /**
-     * @param carrinho the carrinho to set
-     */
-    public void setCarrinho(Carrinho carrinho) {
-        this.carrinho = carrinho;
-    }
 
     /**
      * @return the venda

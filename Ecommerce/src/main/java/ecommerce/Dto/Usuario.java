@@ -9,7 +9,11 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,7 +27,9 @@ public class Usuario implements AbstractDto<Integer>, Serializable{
 
     
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "usuario_id_seq", sequenceName = "usuario_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "usuario_id_seq")
+    @Column(name = "id",columnDefinition = "serial")
     private Integer id;
     
     @Column(name = "login")
@@ -34,6 +40,8 @@ public class Usuario implements AbstractDto<Integer>, Serializable{
     @NotNull
     private String password;
     
+    @OneToOne
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente; 
     
     

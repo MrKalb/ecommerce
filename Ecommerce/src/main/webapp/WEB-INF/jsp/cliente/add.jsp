@@ -35,17 +35,11 @@
                     <option value="${cid.id}">${cid.descricao}</option>
                 </c:forEach>
             </select>
+            <input type="text" id="usuario.email" name="usuario.email" placeholder="Email">
             <br>
+            <input type="password" id="usuario.password" name="usuario.password" placeholder="senha">
+            <br>
+            <input type="submit" value="Salvar">
         </form>
-            <br>
-            <br>
-            <br>
-            <form action="${linkTo[ClienteController].createUsuario}" method="POST">
-                <input type="text" id="usuario.email" placeholder="Email">
-                <br>
-                <input type="password" id="usuario.password" placeholder="senha">
-                <br>
-                <input type="submit" value="Salvar">
-            </form>
     </body>
 </html>
