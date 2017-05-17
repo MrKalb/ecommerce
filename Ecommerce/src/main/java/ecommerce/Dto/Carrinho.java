@@ -20,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -40,12 +41,11 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
     private Cliente cliente; 
     
     @NotNull
-    /*@ManyToMany
-    @JoinTable(name = "itens_pedido", joinColumns = {
-	@JoinColumn(name = "id", nullable = false, updatable = false) },
-	inverseJoinColumns = { @JoinColumn(name = "idcarrinho",	
-                nullable = false, updatable = false) })*/
-    
+    @OneToMany
+        @JoinTable(
+        name="tipocategoria",
+      joinColumns={ @JoinColumn(name="idcategoria", referencedColumnName="id") },
+      inverseJoinColumns={ @JoinColumn(name="idproduto", referencedColumnName="id", unique=true)})
     @ElementCollection
     private List<ItemPedido> item;  
     /* ver com o professor essa logica que ta meio estranho, teria que juntar 3 tabelas, produtos,itens_pedido e carrinho, o carrinho eu consigo
@@ -73,25 +73,25 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
     }
 
     /**
-     * @return the quantidade
+     * @param id the id to set
      */
-    /*
-    public Map<Produto, Integer> getQuantidade() {
-        return produtos;
+    public void setId(Integer id) {
+        this.id = id;
     }
-*/
+
     /**
-     * @param quantidade the quantidade to set
+     * @return the item
      */
-    /*
-    public void setQuantidade(Produto produto, Integer quantidade ) throws Exception {
-        if(quantidade <= 0){
-            throw new Exception("quantidade nao pode ser negativa");
-        }    
-        else{
-            this.produtos.put(produto, quantidade); 
-        }
+    public List<ItemPedido> getItem() {
+        return item;
     }
-    */
+
+    /**
+     * @param item the item to set
+     */
+    public void setItem(List<ItemPedido> item) {
+        this.item = item;
+    }
+
     
 }

@@ -104,7 +104,7 @@ public class ClienteController implements Serializable {
     result.redirectTo(this).list();
     }*/
     
-      @Post
+    @Post("/jsp/cliente/login")
     public void authenticate(Usuario usuario){
         
         System.out.println("Email: " + usuario.getEmail());
@@ -118,6 +118,7 @@ public class ClienteController implements Serializable {
             this.result.redirectTo(this.getClass()).login();
     }
     
+    @Get("jsp/cliente/login")
     public void login(){
         
     }

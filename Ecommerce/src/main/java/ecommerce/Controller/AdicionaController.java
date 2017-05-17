@@ -41,15 +41,14 @@ public class AdicionaController implements Serializable {
         this.catDao = new CategoriaDao(PersistenceManager.getEntityManager());
     }
     
-       @Post("/jsp/produto/show")
-       public void adicionaCategoria(Produto produto, Categoria categoria[]){
+       @Post("/jsp/adiciona/show")
+       public void adicionaCategoria(Produto produto, Categoria categoria){
         this.result.include("categoriaList", this.catDao.getAll());
         this.result.include("produtoList", this.prDao.getAll());
-        Produto p = null;
-        Categoria c = null; 
-        p=prDao.getById(produto);
+        Produto prod = prDao.getById(produto);
+        Categoria cat = catDao.getById(categoria);
         prDao.startTransaction();
-        p.getCategoria().addAll(Arrays.asList(categoria));
+        prod.getCategoria().add(cat);
         prDao.commitTransaction();
         this.result.redirectTo(ProdutoController.class).list();
          //p.getCategoria().addAll(Arrays.asList(categoria));
@@ -72,7 +71,7 @@ public class AdicionaController implements Serializable {
         this.result.redirectTo(ProdutoController.class).list();
     }
     
-    @Get("/jsp/adiciona/add/{produto.id}")
+    @Get("/jsp/adiciona/show/{produto.id}")
     public Produto show(Produto produto){
         this.result.include("categoriaList", this.catDao.getAll());
         this.result.include("produtoList", this.prDao.getAll());

@@ -32,11 +32,6 @@ public class Venda implements AbstractDto<Integer>,Serializable {
 
     @Id
     @GeneratedValue
-  /*  @ManyToOne
-    @JoinTable(name = "itens_pedido", joinColumns = {
-    @JoinColumn(name = "id", nullable = false, updatable = false) },
-    inverseJoinColumns = { @JoinColumn(name = "idvenda",	
-     nullable = false, updatable = false) })*/
      private Integer id; 
     
     @GeneratedValue
