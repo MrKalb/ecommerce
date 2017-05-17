@@ -72,9 +72,12 @@ public class AdicionaController implements Serializable {
         this.result.redirectTo(ProdutoController.class).list();
     }
     
-    @Get("/jsp/produto/add/{produto.id}")
+    @Get("/jsp/adiciona/add/{produto.id}")
     public Produto show(Produto produto){
+        this.result.include("categoriaList", this.catDao.getAll());
+        this.result.include("produtoList", this.prDao.getAll());
         return this.prDao.getById(produto);
+        
     } 
     
     
