@@ -15,13 +15,7 @@
     <body>
         <h1>Adicionando Categorias</h1>
         <form action="${linkTo[AdicionaController].adicionaCategoria}" method="POST">
-            <label>Escolha o produto</label>
-            <br>
-            <select id="produto" name="produto.id">
-            <c:forEach items="${produtoList}" var="prod" varStatus="sts">
-                <option value="${prod.id}">${prod.descricao}</option>
-            </c:forEach>
-        </select>
+            <input type="hidden" name="produto.id" value="${produto.id}"/>
             <br>
             <label>Escolha a Categoria</label>
             <br>

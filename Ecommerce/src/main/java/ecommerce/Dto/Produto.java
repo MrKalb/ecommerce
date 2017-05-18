@@ -49,8 +49,8 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     @OneToMany
         @JoinTable(
         name="tipocategoria",
-      joinColumns={ @JoinColumn(name="idcategoria", referencedColumnName="id") },
-      inverseJoinColumns={ @JoinColumn(name="idproduto", referencedColumnName="id", unique=true)})
+      joinColumns={ @JoinColumn(name="idproduto", referencedColumnName="id") },
+      inverseJoinColumns={ @JoinColumn(name="idcategoria", referencedColumnName="id", unique=true)})
     @ElementCollection
     private List<Categoria> categoria; 
     

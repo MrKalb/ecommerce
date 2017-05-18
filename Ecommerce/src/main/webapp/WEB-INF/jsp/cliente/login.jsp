@@ -19,6 +19,8 @@
             <input type="password" name="usuario.password" id="usuario.password" placeholder="Digite a senha">
             <br>
             <input type="submit" value="Enviar">
+            
+            <p>${mensagem}</p>
         </form>
     </body>
 </html>

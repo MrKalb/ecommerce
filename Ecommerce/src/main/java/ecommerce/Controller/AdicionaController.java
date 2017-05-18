@@ -43,8 +43,6 @@ public class AdicionaController implements Serializable {
     
        @Post("/jsp/adiciona/show")
        public void adicionaCategoria(Produto produto, Categoria categoria){
-        this.result.include("categoriaList", this.catDao.getAll());
-        this.result.include("produtoList", this.prDao.getAll());
         Produto prod = prDao.getById(produto);
         Categoria cat = catDao.getById(categoria);
         prDao.startTransaction();
@@ -74,7 +72,6 @@ public class AdicionaController implements Serializable {
     @Get("/jsp/adiciona/show/{produto.id}")
     public Produto show(Produto produto){
         this.result.include("categoriaList", this.catDao.getAll());
-        this.result.include("produtoList", this.prDao.getAll());
         return this.prDao.getById(produto);
         
     } 
