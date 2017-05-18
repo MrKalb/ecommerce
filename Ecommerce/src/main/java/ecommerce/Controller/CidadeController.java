@@ -14,6 +14,7 @@ import ecommerce.Dao.CidadeDao;
 import ecommerce.Dao.EstadoDao;
 import ecommerce.Dto.Cidade;
 import ecommerce.PersistenceManager.PersistenceManager;
+import ecommerce.annotations.Administrative;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
@@ -47,6 +48,7 @@ public class CidadeController implements Serializable {
     public void index(){
         this.result.redirectTo(this).list();
     }
+    @Administrative
     @Get("/jsp/cidade/add")
     public void add (){
           this.result.include("estadoList", this.estDao.getAll());
@@ -59,7 +61,7 @@ public class CidadeController implements Serializable {
         return this.cidDao.getById(cidade);
         
     }
-    
+    @Administrative
     @Post("/jsp/cidade/add")
     public void adiciona(Cidade cidade){
         this.cidDao.startTransaction();
@@ -68,7 +70,7 @@ public class CidadeController implements Serializable {
         this.cidDao.commitTransaction();
         result.redirectTo(this).list();
     }
-    
+    @Administrative
     @Post("/jsp/cidade/show")
     public void update(Cidade cidade){
         this.cidDao.startTransaction();
@@ -86,7 +88,7 @@ public class CidadeController implements Serializable {
     public List<Cidade> list (){
         return this.cidDao.getAll();
     }
-    
+    @Administrative
     @Get("/jsp/cidade/list/{cidade.id}")
     public void remove(Cidade cidade){
         cidade = cidDao.getById(cidade);

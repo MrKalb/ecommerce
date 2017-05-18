@@ -23,12 +23,12 @@ public class Authenticator implements Serializable{
     @Inject
     private Result result;
     
-    	@Inject ControllerMethod controllerMethod; 
-	
-	@Accepts
-	public boolean accepts() {
-		return !controllerMethod.containsAnnotation(Administrative.class);
-	}
+    /*    	@Inject ControllerMethod controllerMethod;
+    
+    @Accepts
+    public boolean accepts() {
+    return !controllerMethod.containsAnnotation(Administrative.class);
+    }*/
     
     
     public String getNextPath() {
