@@ -36,6 +36,9 @@ public class ItemPedido implements AbstractDto<Integer>, Serializable {
     @NotNull
     private int quantidade; 
     
+    @OneToOne
+    @JoinColumn(name = "idcarrinho")
+    private Carrinho carrinho; 
     
     @OneToOne
     private Venda venda; 
@@ -94,6 +97,20 @@ public class ItemPedido implements AbstractDto<Integer>, Serializable {
      */
     public void setVenda(Venda venda) {
         this.venda = venda;
+    }
+
+    /**
+     * @return the carrinho
+     */
+    public Carrinho getCarrinho() {
+        return carrinho;
+    }
+
+    /**
+     * @param carrinho the carrinho to set
+     */
+    public void setCarrinho(Carrinho carrinho) {
+        this.carrinho = carrinho;
     }
     
 }

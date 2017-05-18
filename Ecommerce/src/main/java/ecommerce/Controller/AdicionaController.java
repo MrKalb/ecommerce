@@ -9,14 +9,19 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import ecommerce.Dao.CarrinhoDao;
 import ecommerce.Dao.CategoriaDao;
+import ecommerce.Dao.ItemPedidoDao;
 import ecommerce.Dao.ProdutoDao;
+import ecommerce.Dao.UsuarioDao;
+import ecommerce.Dto.Carrinho;
 import ecommerce.Dto.Categoria;
+import ecommerce.Dto.Cliente;
+import ecommerce.Dto.ItemPedido;
 import ecommerce.Dto.Produto;
+import ecommerce.Dto.Usuario;
 import ecommerce.PersistenceManager.PersistenceManager;
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -33,12 +38,19 @@ public class AdicionaController implements Serializable {
            
     private final ProdutoDao prDao; 
     private final CategoriaDao catDao;  
-        @Inject
+    private final UsuarioDao usDao;
+    private final CarrinhoDao carDao; 
+    private final ItemPedidoDao itDao;
+        
+    @Inject
     Result result; 
     
     public AdicionaController(){
         this.prDao= new ProdutoDao(PersistenceManager.getEntityManager());
         this.catDao = new CategoriaDao(PersistenceManager.getEntityManager());
+        this.usDao = new UsuarioDao(PersistenceManager.getEntityManager());
+        this.carDao = new CarrinhoDao(PersistenceManager.getEntityManager());
+        this.itDao =  new ItemPedidoDao(PersistenceManager.getEntityManager());
     }
     
        @Post("/jsp/adiciona/show")
@@ -75,7 +87,7 @@ public class AdicionaController implements Serializable {
         return this.prDao.getById(produto);
         
     } 
-    
+   
     
        
 }

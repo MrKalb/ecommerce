@@ -1,8 +1,10 @@
 package ecommerce.interceptadores;
 
+import br.com.caelum.vraptor.Accepts;
 import br.com.caelum.vraptor.AroundCall;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.controller.ControllerMethod;
 import br.com.caelum.vraptor.interceptor.AcceptsWithAnnotations;
 import br.com.caelum.vraptor.interceptor.SimpleInterceptorStack;
 import ecommerce.Controller.ClienteController;
@@ -26,6 +28,17 @@ import org.slf4j.LoggerFactory;
 public class AuthInterceptor {
     
     private Logger logger = LoggerFactory.getLogger(this.getClass());
+   // private final ControllerMethod controllerMethod;
+    
+    /*   	@Inject
+    public AuthInterceptor(ControllerMethod controllerMethod){
+    this.controllerMethod=controllerMethod;
+    }
+    
+    @Deprecated
+    AuthInterceptor(){
+    this(null);
+    }*/
     
     @Inject
     Result result;
@@ -37,6 +50,7 @@ public class AuthInterceptor {
     
     @Inject
     private HttpServletRequest request;
+    
     
     
     @AroundCall

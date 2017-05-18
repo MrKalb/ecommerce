@@ -43,7 +43,6 @@ public class Venda implements AbstractDto<Integer>,Serializable {
     @ElementCollection
     private List<ItemPedido> itensVenda; 
     
-    
     @Column
     private float total; 
     

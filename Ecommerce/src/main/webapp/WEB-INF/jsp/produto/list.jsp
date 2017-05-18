@@ -31,6 +31,7 @@
                 <td>${prod.codBarras}</td>
                 <td> <a href="${linkTo[AdicionaController].show(prod)}">Adicionar Categoria</a>
                 <td> <a href="${linkTo[ProdutoController].show(prod)}">Editar Produto</a></td>
+                <td> <a href="${linkTo[CarrinhoController].adicionaCarrinho(prod)}">Adicionar a carrinho</a></td>
                 <td> <a href="${linkTo[ProdutoController].remove(prod)}" onclick="return confirm('Deseja realmente excluir ?')">Remover</a>;
                 </tr>
             </c:forEach>

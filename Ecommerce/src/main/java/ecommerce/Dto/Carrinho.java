@@ -21,6 +21,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -36,11 +37,11 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
     @GeneratedValue
     private Integer id; 
     
-    @Column(name = "idcliente")
-    @NotNull
+    @JoinColumn(name = "idcliente")
+    @OneToOne
     private Cliente cliente; 
     
-    @NotNull
+  /*  @NotNull
     @OneToMany
         @JoinTable(
         name="tipocategoria",
@@ -55,9 +56,6 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
         return id; 
     }
 
-   public Carrinho(){
-        this.item = new ArrayList<>();
-    }
     /**
      * @return the cliente
      */
@@ -78,20 +76,4 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    /**
-     * @return the item
-     */
-    public List<ItemPedido> getItem() {
-        return item;
-    }
-
-    /**
-     * @param item the item to set
-     */
-    public void setItem(List<ItemPedido> item) {
-        this.item = item;
-    }
-
-    
 }
