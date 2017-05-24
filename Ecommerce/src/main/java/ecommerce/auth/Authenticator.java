@@ -66,8 +66,15 @@ public class Authenticator implements Serializable{
         else
             this.loginTime = Calendar.getInstance();
             
-        return this.usuario != null;
+        return this.getUsuario() != null;
     
+    }
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
     }
     
     

@@ -18,4 +18,6 @@ public class ItemPedidoDao extends AbstractDao<ItemPedido>  {
         super(em, ItemPedido.class);
     }
     
+    
+    
 }

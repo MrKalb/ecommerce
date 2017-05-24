@@ -5,32 +5,44 @@
  */
 package ecommerce.Controller;
 
+import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import ecommerce.Dao.CarrinhoDao;
+import ecommerce.Dao.ClienteDao;
 import ecommerce.Dao.ItemPedidoDao;
 import ecommerce.Dao.ProdutoDao;
 import ecommerce.Dao.UsuarioDao;
 import ecommerce.Dto.Carrinho;
-import ecommerce.Dto.Cliente;
 import ecommerce.Dto.ItemPedido;
 import ecommerce.Dto.Produto;
 import ecommerce.Dto.Usuario;
 import ecommerce.PersistenceManager.PersistenceManager;
 import ecommerce.annotations.Administrative;
+import ecommerce.auth.Authenticator;
+import java.io.Serializable;
+import java.util.List;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.persistence.TypedQuery;
 
 /**
  *
  * @author igor
  */
-public class CarrinhoController {
+@Controller
+@SessionScoped
+public class CarrinhoController implements Serializable {
 
     private final ProdutoDao prDao;
     private final UsuarioDao usDao;
+    private final ClienteDao clDao; 
     private final CarrinhoDao carDao;
     private final ItemPedidoDao itDao;
+   
+    @Inject
+    private Authenticator auth;
 
     @Inject
     Result result;
@@ -40,24 +52,25 @@ public class CarrinhoController {
         this.carDao = new CarrinhoDao(PersistenceManager.getEntityManager());
         this.itDao = new ItemPedidoDao(PersistenceManager.getEntityManager());
         this.prDao = new ProdutoDao(PersistenceManager.getEntityManager());
+        this.clDao = new ClienteDao(PersistenceManager.getEntityManager());
     }
 
-    @Get("/jsp/produto/list/{produto.id}")
-    public Produto show(Produto produto) {
-        return this.prDao.getById(produto);
+    @Get("/jsp/carrinho/list/{usuario.id}")
+    public List<ItemPedido> list(Usuario usuario) {
+        usuario = usDao.getById(this.auth.getUsuario());
+       return clDao.getCarrinho(usuario.getCliente().getId());    
     }
 
     @Administrative
     @Post("/jsp/carrinho/add")
-    public void adicionaCarrinho(Produto produto, Usuario usuario) {
+    public void adicionaCarrinho(Produto produto, Carrinho carrinho) {
 
+        
         ItemPedido iP = null;
-        Carrinho carrinho = null;
         Produto p = prDao.getById(produto);
-        Cliente c = usDao.getById(usuario).getCliente();
-
+        Usuario usuario = usDao.getById(this.auth.getUsuario());
         carDao.startTransaction();
-        carrinho.setCliente(c);
+        carrinho.setCliente(usuario.getCliente());
         carDao.save(carrinho);
         carDao.commitTransaction();
 

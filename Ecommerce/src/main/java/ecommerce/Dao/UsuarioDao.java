@@ -5,12 +5,14 @@
  */
 package ecommerce.Dao;
 
+import ecommerce.Dto.ItemPedido;
 import ecommerce.Dto.Usuario;
 import ecommerce.Dto.Usuario_;
 import ecommerce.auth.MultipleLoginsFound;
 import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -22,6 +24,7 @@ import javax.persistence.criteria.Root;
  */
 @RequestScoped
 public class UsuarioDao extends AbstractDao<Usuario>{
+    
     
     public UsuarioDao(EntityManager em) {
         super(em, Usuario.class);
@@ -47,7 +50,5 @@ public class UsuarioDao extends AbstractDao<Usuario>{
         return lista.isEmpty()? null: lista.get(0);
         
     }
-    
-    
-    
+   
 }

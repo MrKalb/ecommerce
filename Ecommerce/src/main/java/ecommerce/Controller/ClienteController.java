@@ -67,6 +67,7 @@ public class ClienteController implements Serializable {
         this.clDao.commitTransaction();
         this.createUsuario(usuario,cliente);
         this.result.redirectTo(this).login();
+        
     }
     
        
@@ -104,6 +105,7 @@ public class ClienteController implements Serializable {
     result.redirectTo(this).list();
     }*/
     
+    
     @Post("/jsp/cliente/login")
     public void authenticate(Usuario usuario){
         
@@ -128,5 +130,6 @@ public class ClienteController implements Serializable {
          usuario.setCliente(clDao.getById(cliente));
         this.uDao.save(usuario);
         this.uDao.commitTransaction();
+      
     }
 }
