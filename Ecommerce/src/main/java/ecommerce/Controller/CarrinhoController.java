@@ -15,6 +15,7 @@ import ecommerce.Dao.ItemPedidoDao;
 import ecommerce.Dao.ProdutoDao;
 import ecommerce.Dao.UsuarioDao;
 import ecommerce.Dto.Carrinho;
+import ecommerce.Dto.Categoria;
 import ecommerce.Dto.ItemPedido;
 import ecommerce.Dto.Produto;
 import ecommerce.Dto.Usuario;
@@ -37,10 +38,10 @@ public class CarrinhoController implements Serializable {
 
     private final ProdutoDao prDao;
     private final UsuarioDao usDao;
-    private final ClienteDao clDao; 
+    private final ClienteDao clDao;
     private final CarrinhoDao carDao;
     private final ItemPedidoDao itDao;
-   
+
     @Inject
     private Authenticator auth;
 
@@ -58,14 +59,13 @@ public class CarrinhoController implements Serializable {
     @Get("/jsp/carrinho/list/{usuario.id}")
     public List<ItemPedido> list(Usuario usuario) {
         usuario = usDao.getById(this.auth.getUsuario());
-       return clDao.getCarrinho(usuario.getCliente().getId());    
+        return clDao.getCarrinho(usuario.getCliente().getId());
     }
 
     @Administrative
-    @Post("/jsp/carrinho/add")
+    @Post("/jsp/carrinho/show")
     public void adicionaCarrinho(Produto produto, Carrinho carrinho) {
 
-        
         ItemPedido iP = null;
         Produto p = prDao.getById(produto);
         Usuario usuario = usDao.getById(this.auth.getUsuario());
@@ -79,7 +79,7 @@ public class CarrinhoController implements Serializable {
         itDao.startTransaction();
         itDao.save(iP);
         itDao.commitTransaction();
-        
+
         this.result.redirectTo(ProdutoController.class).list();
     }
 
@@ -93,6 +93,11 @@ public class CarrinhoController implements Serializable {
         carDao.remove(carrinho);
         carDao.commitTransaction();
         //this.result.redirectTo(this).list();
+    }
+    @Administrative
+    @Get("/jsp/carrinho/show/{produto.id}")
+    public Produto show(Produto produto) {
+        return this.prDao.getById(produto);
     }
 
 }

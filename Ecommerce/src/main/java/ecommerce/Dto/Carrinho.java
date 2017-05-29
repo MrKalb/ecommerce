@@ -22,6 +22,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -34,7 +35,9 @@ import javax.validation.constraints.NotNull;
 public class Carrinho implements AbstractDto<Integer>, Serializable {
 
     @Id
-    @GeneratedValue
+    @SequenceGenerator(name = "carrinho_id_seq", sequenceName = "carrinho_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "carrinho_id_seq")
+    @Column(name = "id",columnDefinition = "serial")
     private Integer id; 
     
     @JoinColumn(name = "idcliente")
