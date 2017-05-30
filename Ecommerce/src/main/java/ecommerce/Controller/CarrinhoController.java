@@ -64,7 +64,7 @@ public class CarrinhoController implements Serializable {
 
     @Administrative
     @Post("/jsp/carrinho/show")
-    public void adicionaCarrinho(Produto produto, Carrinho carrinho) {
+    public void adicionaCarrinho(Produto produto, Carrinho carrinho,Integer quantidade) {
 
         ItemPedido iP = null;
         Produto p = prDao.getById(produto);
@@ -75,6 +75,7 @@ public class CarrinhoController implements Serializable {
         carDao.commitTransaction();
 
         iP.setCarrinho(carrinho);
+        iP.setQuantidade(quantidade);
         iP.setProduto(p);
         itDao.startTransaction();
         itDao.save(iP);

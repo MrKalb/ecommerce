@@ -17,6 +17,8 @@
         <form action="${linkTo[AdicionaController].adicionaCategoria}" method="POST">
             <input type="hidden" name="produto.id" value="${produto.id}"/>
             <br>
+            <p>${produto.descricao}</p>
+            <br>
             <label>Escolha a Categoria</label>
             <br>
             <select id="categoria" name="categoria.id">

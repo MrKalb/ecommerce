@@ -20,6 +20,8 @@
             <br>
             <input type="text" name="produto.vlrVenda" value="${produto.vlrVenda}" id="produto.vlrVenda">
             <br>
+            <input type="text" name="quantidade"  id="quantidade" placeholder="Quantidade">
+            <br>
             <input type="submit" value="Continuar">
         </form>
     </body>

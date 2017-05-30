@@ -22,6 +22,7 @@ import ecommerce.Dto.Produto;
 import ecommerce.Dto.Usuario;
 import ecommerce.PersistenceManager.PersistenceManager;
 import java.io.Serializable;
+import java.util.List;
 import java.util.function.Predicate;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -87,6 +88,12 @@ public class AdicionaController implements Serializable {
         return this.prDao.getById(produto);
         
     } 
+    
+    @Get("/jsp/adiciona/list")
+    public List<Produto> list(){
+        result.include("tipoList", prDao.getCategoria("a"));
+        return prDao.getCategoria("a");
+    }
    
     
        
