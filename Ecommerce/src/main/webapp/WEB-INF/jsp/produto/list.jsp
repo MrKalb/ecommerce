@@ -40,11 +40,8 @@
         <form action="${linkTo[AdicionaController].list}" method="GET">
          <br>
          <input type="text" id="tipo" name="tipo" placeholder="Digite a categoria desejada">
-        <input type="submit" value="Pesquisar">
+         <input type="submit" value="Pesquisar">
         <br>
-        
         </form>
-            
-        
     </body>
 </html>
