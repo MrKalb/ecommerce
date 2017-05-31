@@ -23,7 +23,7 @@
                 <tr>
                     <td>${tip.produto.descricao}</td>
                     <td>${tip.categoria.descricao}</td>
-                    <td>${tip.produto.vlrvenda}</td>
+                    <td>${tip.produto.vlrVenda}</td>
                     <td> <a href="${linkTo[CarrinhoController].show(tip.produto)}">Adicionar a carrinho</a></td>
                 </tr>
             </c:forEach>

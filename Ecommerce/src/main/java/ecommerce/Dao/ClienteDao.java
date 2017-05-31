@@ -24,8 +24,8 @@ public class ClienteDao extends AbstractDao<Cliente> {
         super(em, Cliente.class);
     }
     
-        public List<ItemPedido> getCarrinho(Integer a){
-          TypedQuery<ItemPedido> p1 = em.createQuery("SELECT * FROM itenspedido ip join carrinho ca on ip.idcarrinho=ca.id"
+        public List<ItemPedido> getItem(Integer a){
+          TypedQuery<ItemPedido> p1 = em.createQuery("SELECT ip FROM itenspedido ip join carrinho ca on ip.idcarrinho=ca.id"
                + "where idcliente = "+ a , ItemPedido.class);
           return p1.getResultList();
     }

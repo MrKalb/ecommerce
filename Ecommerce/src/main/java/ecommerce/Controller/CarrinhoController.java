@@ -22,8 +22,10 @@ import ecommerce.Dto.Usuario;
 import ecommerce.PersistenceManager.PersistenceManager;
 import ecommerce.annotations.Administrative;
 import ecommerce.auth.Authenticator;
+import ecommerce.auth.CarrinhoAuth;
 import java.io.Serializable;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.TypedQuery;
@@ -33,7 +35,7 @@ import javax.persistence.TypedQuery;
  * @author igor
  */
 @Controller
-@SessionScoped
+@RequestScoped
 public class CarrinhoController implements Serializable {
 
     private final ProdutoDao prDao;
@@ -44,6 +46,9 @@ public class CarrinhoController implements Serializable {
 
     @Inject
     private Authenticator auth;
+    
+    @Inject
+    private CarrinhoAuth carAuth;
 
     @Inject
     Result result;
@@ -59,22 +64,18 @@ public class CarrinhoController implements Serializable {
     @Get("/jsp/carrinho/list/{usuario.id}")
     public List<ItemPedido> list(Usuario usuario) {
         usuario = usDao.getById(this.auth.getUsuario());
-        return clDao.getCarrinho(usuario.getCliente().getId());
+        return clDao.getItem(usuario.getCliente().getId());
     }
 
     @Administrative
     @Post("/jsp/carrinho/show")
-    public void adicionaCarrinho(Produto produto, Carrinho carrinho,Integer quantidade) {
+    public void adicionaCarrinho(Produto produto,Integer quantidade) {
 
-        ItemPedido iP = null;
+        //carAuth.criaCarrinho();
+        ItemPedido iP = new ItemPedido();
         Produto p = prDao.getById(produto);
-        Usuario usuario = usDao.getById(this.auth.getUsuario());
-        carDao.startTransaction();
-        carrinho.setCliente(usuario.getCliente());
-        carDao.save(carrinho);
-        carDao.commitTransaction();
-
-        iP.setCarrinho(carrinho);
+        
+        iP.setCarrinho(carAuth.getCarrinho());
         iP.setQuantidade(quantidade);
         iP.setProduto(p);
         itDao.startTransaction();

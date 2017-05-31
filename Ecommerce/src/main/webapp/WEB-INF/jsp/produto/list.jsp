@@ -37,7 +37,7 @@
             </c:forEach>
         </table>
         <br>
-        <form action="${linkTo[AdicionaController].list}" method="POST">
+        <form action="${linkTo[AdicionaController].list}" method="GET">
          <br>
          <input type="text" id="tipo" name="tipo" placeholder="Digite a categoria desejada">
         <input type="submit" value="Pesquisar">

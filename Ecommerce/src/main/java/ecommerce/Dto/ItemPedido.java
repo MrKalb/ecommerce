@@ -47,6 +47,7 @@ public class ItemPedido implements AbstractDto<Integer>, Serializable {
     private Carrinho carrinho; 
     
     @OneToOne
+    @JoinColumn(name = "idvenda")
     private Venda venda; 
     
     

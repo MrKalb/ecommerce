@@ -16,9 +16,9 @@
         <form action="${linkTo[CarrinhoController].adicionaCarrinho}" method="POST">
         <input type="hidden" name="produto.id" value="${produto.id}"/>
             <br>
-            <input type="text" name="produto.descricao" value="${produto.descricao}" id="produto.descricao">
+            <p>"${produto.descricao}</p>
             <br>
-            <input type="text" name="produto.vlrVenda" value="${produto.vlrVenda}" id="produto.vlrVenda">
+            <p>${produto.vlrVenda}</p>
             <br>
             <input type="text" name="quantidade"  id="quantidade" placeholder="Quantidade">
             <br>
