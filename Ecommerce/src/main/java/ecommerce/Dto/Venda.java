@@ -6,6 +6,7 @@
 package ecommerce.Dto;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +21,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -38,19 +40,25 @@ public class Venda implements AbstractDto<Integer>,Serializable {
     private Integer numeroPedido;
     
     @Column
-    private String data; 
+    private Date data; 
     
     @ElementCollection
+    @OneToMany
     private List<ItemPedido> itensVenda; 
     
     @Column
     private float total; 
     
     @OneToOne
+    @JoinColumn(name = "id_formas_pagamento")
     private FormaPagamento forma; 
     
     @Column 
-    private float vlrFrete; 
+    private double vlrFrete; 
+    
+    @OneToOne
+    @JoinColumn(name = "idtransportadora")
+    private Transportadora transportadora; 
     
 
     @Override
@@ -75,14 +83,14 @@ public class Venda implements AbstractDto<Integer>,Serializable {
     /**
      * @return the data
      */
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
     /**
      * @param data the data to set
      */
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
@@ -95,7 +103,10 @@ public class Venda implements AbstractDto<Integer>,Serializable {
            this.total+= ip.getProduto().getVlrVenda() * ip.getQuantidade();
            
        }
-        total+=vlrFrete; 
+        double vlr = total * 2.50; 
+        
+        this.setVlrFrete(vlr);
+        total+=getVlrFrete(); 
        
         return total;
     }
@@ -119,5 +130,47 @@ public class Venda implements AbstractDto<Integer>,Serializable {
      */
     public List<ItemPedido> getItensVenda() {
         return itensVenda;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the vlrFrete
+     */
+    public double getVlrFrete() {
+        return vlrFrete;
+    }
+
+    /**
+     * @param vlrFrete the vlrFrete to set
+     */
+    public void setVlrFrete(double vlrFrete) {
+        this.vlrFrete = vlrFrete;
+    }
+
+    /**
+     * @param itensVenda the itensVenda to set
+     */
+    public void setItensVenda(List<ItemPedido> itensVenda) {
+        this.itensVenda = itensVenda;
+    }
+
+    /**
+     * @return the transportadora
+     */
+    public Transportadora getTransportadora() {
+        return transportadora;
+    }
+
+    /**
+     * @param transportadora the transportadora to set
+     */
+    public void setTransportadora(Transportadora transportadora) {
+        this.transportadora = transportadora;
     }
 }
