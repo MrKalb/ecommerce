@@ -6,6 +6,7 @@
 package ecommerce.Dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -66,6 +67,9 @@ public class Venda implements AbstractDto<Integer>,Serializable {
         return id; 
     }
 
+       public Venda(){
+           this.itensVenda = new ArrayList<>();
+       }
     /**
      * @return the numeroPedido
      */
@@ -103,7 +107,7 @@ public class Venda implements AbstractDto<Integer>,Serializable {
            this.total+= ip.getProduto().getVlrVenda() * ip.getQuantidade();
            
        }
-        double vlr = total * 2.50; 
+        double vlr = total * 1.250; 
         
         this.setVlrFrete(vlr);
         total+=getVlrFrete(); 
