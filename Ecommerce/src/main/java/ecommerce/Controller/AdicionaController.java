@@ -88,11 +88,11 @@ public class AdicionaController implements Serializable {
         return this.prDao.getById(produto);
         
     } 
-    
-    @Get("/jsp/adiciona/list/{tipo}")
+    @Get("/jsp/adiciona/list/")
+    @Post("/jsp/adiciona/list/{tipo}")
     public List<Produto> list(String tipo){
         result.include("tipoList", prDao.getCategoria(tipo));
-        return prDao.getCategoria(tipo);
+        return prDao.getCategoria(tipo); 
     }
    
     

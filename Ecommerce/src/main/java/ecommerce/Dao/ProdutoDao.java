@@ -5,7 +5,6 @@
  */
 package ecommerce.Dao;
 
-import ecommerce.Dto.ItemPedido;
 import ecommerce.Dto.Produto;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -16,17 +15,19 @@ import javax.persistence.TypedQuery;
  * @author igor
  */
 public class ProdutoDao extends AbstractDao<Produto> {
-    
-    private EntityManager em;
-    
+
+    private EntityManager em = getEntityManager();
+
     public ProdutoDao(EntityManager em) {
         super(em, Produto.class);
     }
-    
-            public List<Produto> getCategoria(String tipo){
-          TypedQuery<Produto> p1 = em.createQuery("SELECT * FROM tipocategoria tc join produto p on tc.idproduto = p.id join categoria c on tc.idcategoria= c.id where"
-                  + " c.descricao like" + "%"+tipo+"%" , Produto.class);
-          return p1.getResultList();
+
+    public List<Produto> getCategoria(String nome) {
+        List<Produto> prod;
+        TypedQuery<Produto> p1 = em.createQuery("SELECT p FROM Produto p join p.categoria c "+
+                "where c.descricao like :name", Produto.class);
+        prod = p1.setParameter("name", nome+"%").getResultList();
+        return prod;
     }
-    
+
 }

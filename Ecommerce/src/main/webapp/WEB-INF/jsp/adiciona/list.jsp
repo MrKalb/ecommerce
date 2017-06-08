@@ -22,14 +22,14 @@
             </tr>
             <c:forEach items="${tipoList}" var="tip" varStatus="sts">
                 <tr>
-                    <td>${tip.produto.descricao}</td>
-                    <td>${tip.categoria.descricao}</td>
-                    <td>${tip.produto.vlrVenda}</td>
-                    <td> <a href="${linkTo[CarrinhoController].show(tip.produto)}">Adicionar a carrinho</a></td>
+                    <td>${tip.descricao}</td>
+           
+                    <td>${tip.vlrVenda}</td>
+                    <td> <a href="${linkTo[CarrinhoController].show(tip)}">Adicionar a carrinho</a></td>
                 </tr>
             </c:forEach>
-                <a href="${linkTo[ProdutoController].list}">Voltar para listagem de produtos</a>
         </table>
+        <a href="${linkTo[ProdutoController].list}">Voltar para listagem de produtos</a>
         
     </body>
 </html>
