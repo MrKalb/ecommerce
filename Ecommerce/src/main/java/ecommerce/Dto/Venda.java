@@ -8,10 +8,7 @@ package ecommerce.Dto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import javafx.scene.chart.PieChart.Data;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -19,57 +16,61 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author igor
  */
 @Entity
-public class Venda implements AbstractDto<Integer>,Serializable {
+public class Venda implements AbstractDto<Integer>, Serializable {
 
     @Id
-    @GeneratedValue
-     private Integer id; 
-    
-    @GeneratedValue
+    @SequenceGenerator(name = "venda_id_seq", sequenceName = "venda_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venda_id_seq")
+    @Column(name = "id", columnDefinition = "serial")
+    private Integer id;
+
+    @SequenceGenerator(name = "venda_numero_pedido_id_seq", sequenceName = "venda_numero_pedido_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venda_numero_pedido_id_seq")
+    @Column(name = "numero_pedido", columnDefinition = "serial")
     private Integer numeroPedido;
-    
+
+    @Temporal(TemporalType.DATE)
     @Column
-    private Date data; 
-    
+    private Date data;
+
     @ElementCollection
     @OneToMany
-    private List<ItemPedido> itensVenda; 
-    
-    @Column
-    private float total; 
-    
+    private List<ItemPedido> itensVenda;
+
+    @Column(name = "total")
+    private float total;
+
     @OneToOne
-    @JoinColumn(name = "id_formas_pagamento")
-    private FormaPagamento forma; 
-    
-    @Column 
-    private double vlrFrete; 
-    
+    @JoinColumn(name = "idformas_pagamento")
+    private FormaPagamento forma;
+
+    @Column(name = "vlr_frete")
+    private double vlrFrete;
+
     @OneToOne
     @JoinColumn(name = "idtransportadora")
-    private Transportadora transportadora; 
-    
+    private Transportadora transportadora;
 
     @Override
     public Integer getId() {
-        return id; 
+        return id;
     }
 
-       public Venda(){
-           this.itensVenda = new ArrayList<>();
-       }
+    public Venda() {
+        this.itensVenda = new ArrayList<>();
+    }
+
     /**
      * @return the numeroPedido
      */
@@ -102,16 +103,16 @@ public class Venda implements AbstractDto<Integer>,Serializable {
      * @return the total
      */
     public float getTotal() {
-       this.total=0.00f;
-       for(ItemPedido ip : this.getItensVenda()){
-           this.total+= ip.getProduto().getVlrVenda() * ip.getQuantidade();
-           
-       }
-        double vlr = total * 1.250; 
-        
+        this.total = 0.00f;
+        for (ItemPedido ip : this.getItensVenda()) {
+            this.total += ip.getProduto().getVlrVenda() * ip.getQuantidade();
+
+        }
+        double vlr = total * 1.25;
+
         this.setVlrFrete(vlr);
-        total+=getVlrFrete(); 
-       
+        total += getVlrFrete();
+
         return total;
     }
 

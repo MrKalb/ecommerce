@@ -13,12 +13,11 @@ import ecommerce.Dao.CarrinhoDao;
 import ecommerce.Dao.ClienteDao;
 import ecommerce.Dao.FormaPagamentoDao;
 import ecommerce.Dao.ItemPedidoDao;
-import ecommerce.Dao.ProdutoDao;
 import ecommerce.Dao.TransportadoraDao;
 import ecommerce.Dao.UsuarioDao;
 import ecommerce.Dao.VendaDao;
 import ecommerce.Dto.Carrinho;
-import ecommerce.Dto.Produto;
+import ecommerce.Dto.ItemPedido;
 import ecommerce.Dto.Venda;
 import ecommerce.PersistenceManager.PersistenceManager;
 import ecommerce.auth.Authenticator;
@@ -64,17 +63,26 @@ public class VendaController {
         Date data = new Date(System.currentTimeMillis());
         vDao.startTransaction();
         venda.setData(data);
+        System.out.println(venda.getForma().getId());
         venda.setForma(fpDao.getById(venda.getForma()));
-        venda.setItensVenda(clDao.getItem(auth.getUsuario().getCliente().getId()));
+        venda.getItensVenda().addAll((clDao.getItem(auth.getUsuario().getCliente().getId())));
         venda.setTransportadora(trDao.getById(venda.getTransportadora()));
         this.vDao.save(venda);
         this.vDao.commitTransaction();
+       // this.ipDao.startTransaction();
+        //fazer foreach para setar as vendas em itempedido
+        /*ItemPedido ip = null;
+        ip.setVenda(venda);
+        this.ipDao.save(ip);
+        this.ipDao.commitTransaction();*/
+        this.result.redirectTo(ProdutoController.class).list();
     }
 
     @Get("/jsp/venda/finaliza")
     public Carrinho finaliza() {
         this.result.include("itemList", clDao.getItem(auth.getUsuario().getCliente().getId()));
         this.result.include("transpList", this.trDao.getAll());
+        this.result.include("formaList", this.fpDao.getAll());
         return this.carDao.getCarrinho(auth.getUsuario().getCliente().getId());
 
     }

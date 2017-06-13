@@ -15,28 +15,34 @@
     <body>
         <h1>Finalizando Venda</h1>
         <form action="${linkTo[VendaController].finaliza}" method="POST">
-            <input type="hidden" name="produto.id" value="${produto.id}"/>
+            <input type="hidden" name="carrinho.id" value="${carrinho.id}"/>
             <table>
                 <tr>
                     <th>Produto</th>
                     <th>Valor</th>
                 </tr>
+                <br>
                 <c:forEach items="${itemList}" var="item" varStatus="sts">
                     <tr>
                         <td>${item.produto.descricao}</td>
-                        <td>${item.produto.VlrVenda}</td>
+                        <td>${item.produto.vlrVenda}</td>
                     </tr>
                 </c:forEach>
             </table>
-            <select id="transportadora" name="transportadora.id">
+            <br>
+            <select id="transportadora" name="venda.transportadora.id">
                 <c:forEach items="${transpList}" var="tr" varStatus="sts">                    
-                        <option value="${tr.id}">${tr.descricao}</option>
+                        <option value="${tr.id}">${tr.razao}</option>
                 </c:forEach>
             </select>
-            <div>
-                <p>Valor Frente</p>
-                <p>${venda.vlrFrete}</p>
-            </div>
+            <br>
+            <select id="formapagamento" name="venda.forma.id">
+                <c:forEach items="${formaList}" var="fp" varStatus="sts">                    
+                        <option value="${fp.id}">${fp.descricao}</option>
+                </c:forEach>
+            </select>
+            <br>
+            <input type="submit" value="Confirmar">
         </form>
     </body>
 </html>

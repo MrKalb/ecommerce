@@ -6,25 +6,15 @@
 package ecommerce.Dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -50,10 +40,12 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
         name="tipocategoria",
       joinColumns={ @JoinColumn(name="idcategoria", referencedColumnName="id") },
       inverseJoinColumns={ @JoinColumn(name="idproduto", referencedColumnName="id", unique=true)})
+    
+    
     @ElementCollection
     private List<ItemPedido> item;  
-    /* ver com o professor essa logica que ta meio estranho, teria que juntar 3 tabelas, produtos,itens_pedido e carrinho, o carrinho eu consigo
-    juntar com o id e itens_pedido mas teria que juntar os produtos, dai nao sei se faço isso na tabela produto ou itens_pedido*/     
+    */
+    
     @Override
     public Integer getId() {
         return id; 

@@ -24,10 +24,11 @@ public class CarrinhoDao extends AbstractDao<Carrinho> {
         super(em, Carrinho.class);
     }
 
-    public Carrinho getCarrinho(Integer a) {
-        TypedQuery<Carrinho> p1 = em.createQuery("select c from Carrinho c join Cliente cl on c.cliente.id = cl.id"
-                + "where c.cliente.id = :id and flgvenda <> 'S'",Carrinho.class);
-         return p1.setParameter("id", a).getSingleResult();
+    public Carrinho getCarrinho(Integer a) { 
+        TypedQuery<Carrinho> p1 = em.createQuery("SELECT c FROM Carrinho c join  c.cliente cl "
+                + "where cl.id = :id",Carrinho.class);
+        return p1.setParameter("id", a).getSingleResult();
+        
     }
 
 }

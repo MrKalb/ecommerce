@@ -7,6 +7,7 @@ package ecommerce.Dao;
 
 import ecommerce.Dto.Cliente;
 import ecommerce.Dto.ItemPedido;
+import ecommerce.Dto.Produto;
 import java.util.List;
 import static javafx.scene.input.KeyCode.T;
 import javax.persistence.EntityManager;
@@ -18,16 +19,18 @@ import javax.persistence.TypedQuery;
  */
 public class ClienteDao extends AbstractDao<Cliente> {
     
-     private EntityManager em;
+     private EntityManager em = getEntityManager();
     
     public ClienteDao(EntityManager em) {
         super(em, Cliente.class);
     }
     
         public List<ItemPedido> getItem(Integer a){
-          TypedQuery<ItemPedido> p1 = em.createQuery("SELECT ip FROM itenspedido ip join carrinho ca on ip.idcarrinho=ca.id where ca.idcliente = :id",ItemPedido.class);
-          return p1.setParameter("id", a).getResultList();
-          
+            List<ItemPedido> ped; 
+          TypedQuery<ItemPedido> p1 = em.createQuery("SELECT ip FROM ItemPedido ip join ip.carrinho ca "
+                  + " where ca.cliente.id = :id",ItemPedido.class);
+          ped = p1.setParameter("id", a).getResultList();
+          return ped; 
     }
     
     
