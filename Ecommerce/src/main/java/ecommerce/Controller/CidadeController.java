@@ -46,7 +46,7 @@ public class CidadeController implements Serializable {
     @Get
     @Path("/")
     public void index(){
-        this.result.redirectTo(this).list();
+        this.result.redirectTo(ProdutoController.class).list();
     }
     @Administrative
     @Get("/jsp/cidade/add")
