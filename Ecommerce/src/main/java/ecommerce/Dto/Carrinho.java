@@ -34,6 +34,9 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
     @OneToOne
     private Cliente cliente; 
     
+    @Column(name = "flgvenda")
+    private String sts; 
+    
   /*  @NotNull
     @OneToMany
         @JoinTable(
@@ -70,5 +73,19 @@ public class Carrinho implements AbstractDto<Integer>, Serializable {
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     * @return the sts
+     */
+    public String getSts() {
+        return sts;
+    }
+
+    /**
+     * @param sts the sts to set
+     */
+    public void setSts(String sts) {
+        this.sts = sts;
     }
 }

@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -19,20 +22,23 @@ import javax.persistence.Id;
 @Entity
 public class Entrega implements AbstractDto<Integer>,Serializable {
 
-    @Id 
-    @GeneratedValue
+    @Id
+    @SequenceGenerator(name = "entrega_id_seq", sequenceName = "entrega_id_seq",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "entrega_id_seq")
+    @Column(name = "id",columnDefinition = "serial")
     private Integer id; 
     
     @Column(name="id_numero_pedido")
-    private Venda numeroPedido; 
+    private Integer numeroPedido; 
     
-    @Column
-    private Venda idvenda; 
+    @Column(name = "idvenda")
+    private Integer idvenda; 
     
-    @Column
+    @Column(name = "status")
     private String status; 
     
-    @Column(name = "idtransporadora")
+    @JoinColumn(name = "idtransportadora")
+    @OneToOne
     private Transportadora transporte; 
     
     
@@ -44,14 +50,14 @@ public class Entrega implements AbstractDto<Integer>,Serializable {
     /**
      * @return the numeroPedido
      */
-    public Venda getNumeroPedido() {
+    public Integer getNumeroPedido() {
         return numeroPedido;
     }
 
     /**
      * @param numeroPedido the numeroPedido to set
      */
-    public void setNumeroPedido(Venda numeroPedido) {
+    public void setNumeroPedido(Integer numeroPedido) {
         this.numeroPedido = numeroPedido;
     }
 
@@ -86,14 +92,14 @@ public class Entrega implements AbstractDto<Integer>,Serializable {
     /**
      * @return the idvenda
      */
-    public Venda getIdvenda() {
+    public Integer getIdvenda() {
         return idvenda;
     }
 
     /**
      * @param idvenda the idvenda to set
      */
-    public void setIdvenda(Venda idvenda) {
+    public void setIdvenda(Integer idvenda) {
         this.idvenda = idvenda;
     }
     

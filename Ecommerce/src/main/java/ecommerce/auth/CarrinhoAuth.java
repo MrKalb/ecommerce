@@ -46,8 +46,8 @@ public class CarrinhoAuth implements Serializable {
         carDao.commitTransaction();
     }
 
-    public Carrinho getCarrinho() {
-        if (carrinho == null) {
+    public Carrinho getCarrinho(){
+        if (carrinho == null || carrinho.getSts() == "S") {
            criaCarrinho(); 
         }
            return carrinho; 

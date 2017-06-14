@@ -12,10 +12,12 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -35,24 +37,30 @@ public class Venda implements AbstractDto<Integer>, Serializable {
     @Column(name = "id", columnDefinition = "serial")
     private Integer id;
 
-    @SequenceGenerator(name = "venda_numero_pedido_id_seq", sequenceName = "venda_numero_pedido_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venda_numero_pedido_id_seq")
-    @Column(name = "numero_pedido", columnDefinition = "serial")
+    //@SequenceGenerator(name = "venda_numero_pedido_seq", sequenceName = "venda_numero_pedido_seq", allocationSize = 1)
+   // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venda_numero_pedido_seq")
+    @Column(name = "numero_pedido")
     private Integer numeroPedido;
 
     @Temporal(TemporalType.DATE)
     @Column
     private Date data;
 
-    @ElementCollection
-    @OneToMany
+  @ElementCollection
+  @OneToMany
+  @JoinTable
+  (
+      name="itens_venda",
+      joinColumns={ @JoinColumn(name="idvenda", referencedColumnName="id") },
+      inverseJoinColumns={ @JoinColumn(name="iditens", referencedColumnName="id") }
+  )
     private List<ItemPedido> itensVenda;
 
     @Column(name = "total")
     private float total;
 
     @OneToOne
-    @JoinColumn(name = "idformas_pagamento")
+    @JoinColumn(name = "idformas_de_pagamento")
     private FormaPagamento forma;
 
     @Column(name = "vlr_frete")
@@ -103,7 +111,7 @@ public class Venda implements AbstractDto<Integer>, Serializable {
      * @return the total
      */
     public float getTotal() {
-        this.total = 0.00f;
+       /* this.total = 0.00f;
         for (ItemPedido ip : this.getItensVenda()) {
             this.total += ip.getProduto().getVlrVenda() * ip.getQuantidade();
 
@@ -112,7 +120,7 @@ public class Venda implements AbstractDto<Integer>, Serializable {
 
         this.setVlrFrete(vlr);
         total += getVlrFrete();
-
+*/
         return total;
     }
 
@@ -177,5 +185,12 @@ public class Venda implements AbstractDto<Integer>, Serializable {
      */
     public void setTransportadora(Transportadora transportadora) {
         this.transportadora = transportadora;
+    }
+
+    /**
+     * @param total the total to set
+     */
+    public void setTotal(float total) {
+        this.total = total;
     }
 }
