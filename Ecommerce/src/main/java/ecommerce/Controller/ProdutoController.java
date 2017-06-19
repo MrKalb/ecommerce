@@ -53,6 +53,11 @@ public class ProdutoController implements Serializable {
     public List<Produto> list() {
         return this.prDao.getAll();
     }
+    
+    @Get("jsp/produto/lista")
+    public List<Produto>lista(){
+        return this.prDao.getAll();
+    }
 
     @Post("/jsp/produto/add")
     public void adiciona(Produto produto) {
