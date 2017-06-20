@@ -14,6 +14,7 @@ import ecommerce.Dao.ProdutoDao;
 import ecommerce.Dto.Categoria;
 import ecommerce.Dto.Produto;
 import ecommerce.PersistenceManager.PersistenceManager;
+import ecommerce.annotations.Client;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
@@ -49,6 +50,7 @@ public class ProdutoController implements Serializable {
         this.result.include("produtoList", this.prDao.getAll());
     }
 
+    @Client
     @Get("/jsp/produto/list")
     public List<Produto> list() {
         return this.prDao.getAll();

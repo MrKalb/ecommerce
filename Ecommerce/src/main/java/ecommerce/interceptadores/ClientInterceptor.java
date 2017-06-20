@@ -1,32 +1,34 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ecommerce.interceptadores;
 
-import br.com.caelum.vraptor.Accepts;
 import br.com.caelum.vraptor.AroundCall;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;
-import br.com.caelum.vraptor.controller.ControllerMethod;
 import br.com.caelum.vraptor.interceptor.AcceptsWithAnnotations;
 import br.com.caelum.vraptor.interceptor.SimpleInterceptorStack;
 import ecommerce.Controller.ClienteController;
-import ecommerce.annotations.Administrative;
+import ecommerce.Dto.Usuario;
 import ecommerce.annotations.Client;
 import ecommerce.auth.Authenticator;
-import org.slf4j.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
 
 /**
  *
- * @author diego
+ * @author igor
  */
+
 @Intercepts
 @RequestScoped
-@AcceptsWithAnnotations(Administrative.class)
-public class AuthInterceptor {
+@AcceptsWithAnnotations(Client.class)
+public class ClientInterceptor  {
     
     private Logger logger = LoggerFactory.getLogger(this.getClass());
    // private final ControllerMethod controllerMethod;
@@ -48,6 +50,9 @@ public class AuthInterceptor {
     @Inject
     private Authenticator auth;
     
+    @Inject
+    private Usuario us;
+    
     
     @Inject
     private HttpServletRequest request;
@@ -60,8 +65,9 @@ public class AuthInterceptor {
             this.auth.setNextPath(this.request.getRequestURI().substring(this.request.getContextPath().length()));
             this.result.redirectTo(ClienteController.class).login();
         }
-        else
+        else{
             stack.next( );
+        }
     }
     
 }

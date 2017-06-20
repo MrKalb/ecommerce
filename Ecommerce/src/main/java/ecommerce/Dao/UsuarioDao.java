@@ -50,5 +50,6 @@ public class UsuarioDao extends AbstractDao<Usuario>{
         return lista.isEmpty()? null: lista.get(0);
         
     }
+    
    
 }

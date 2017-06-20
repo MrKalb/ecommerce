@@ -10,10 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <c:import url="/WEB-INF/jsp/nav.jsp"/>
+        <h1>Lujinha</h1>
         
         <table class="table table-hover">
             <thead>

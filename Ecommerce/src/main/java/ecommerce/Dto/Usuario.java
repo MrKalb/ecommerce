@@ -44,6 +44,9 @@ public class Usuario implements AbstractDto<Integer>, Serializable{
     @JoinColumn(name = "id_cliente")
     private Cliente cliente; 
     
+    @Column(name = "tipo")
+    private String tipo; 
+    
     
 
     public String getEmail() {
@@ -86,6 +89,20 @@ public class Usuario implements AbstractDto<Integer>, Serializable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public String getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
     
