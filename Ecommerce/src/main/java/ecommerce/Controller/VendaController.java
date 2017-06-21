@@ -20,6 +20,7 @@ import ecommerce.Dao.VendaDao;
 import ecommerce.Dto.Carrinho;
 import ecommerce.Dto.Entrega;
 import ecommerce.Dto.ItemPedido;
+import ecommerce.Dto.Produto;
 import ecommerce.Dto.Venda;
 import ecommerce.PersistenceManager.PersistenceManager;
 import ecommerce.auth.Authenticator;
@@ -102,10 +103,14 @@ public class VendaController {
         et.setTransporte(venda.getTransportadora());
         this.etDao.save(et);
         this.etDao.commitTransaction();
-        this.result.redirectTo(ProdutoController.class).list();
+        this.result.redirectTo(ProdutoController.class).lista();
     }
 
-    
+    @Get("/jsp/venda/finaliza")
+    public List<Venda> list(){
+        this.result.include("vendaList", this.vDao.getAll());
+        return this.vDao.getAll();
+    }
     
     @Get("/jsp/venda/finaliza")
     public Carrinho finaliza() {

@@ -22,7 +22,7 @@
                 <th>Descricao</th>
                 <th>Valor</th>
                 <th>CodBarras</th>
-                <th>Açoes</th>
+                <th colspan="3">Açoes</th>
             </tr>
 
             <c:forEach items="${produtoList}" var="prod" varStatus="sts">
@@ -33,7 +33,6 @@
                     <td>${prod.codBarras}</td>
                     <td> <a href="${linkTo[AdicionaController].show(prod)}">Adicionar Categoria</a>
                     <td> <a href="${linkTo[ProdutoController].show(prod)}">Editar Produto</a></td>
-                    <td> <a href="${linkTo[CarrinhoController].show(prod)}">Adicionar a carrinho</a></td>
                     <td> <a href="${linkTo[ProdutoController].remove(prod)}" onclick="return confirm('Deseja realmente excluir ?')">Remover</a>;
                 </tr>
             </c:forEach>

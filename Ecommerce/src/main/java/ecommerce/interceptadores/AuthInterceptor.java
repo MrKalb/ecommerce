@@ -60,8 +60,14 @@ public class AuthInterceptor {
             this.auth.setNextPath(this.request.getRequestURI().substring(this.request.getContextPath().length()));
             this.result.redirectTo(ClienteController.class).login();
         }
-        else
-            stack.next( );
+        else{
+            if(this.auth.getUsuario().getTipo().equals("A")){
+            stack.next();
+            }
+            else{
+                this.result.redirectTo(ClienteController.class).login();
+            }
+        }
     }
     
 }

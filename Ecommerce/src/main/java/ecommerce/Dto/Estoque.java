@@ -80,7 +80,7 @@ public class Estoque implements AbstractDto<Integer>,Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
+    
 
 
     

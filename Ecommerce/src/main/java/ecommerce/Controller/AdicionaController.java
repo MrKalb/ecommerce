@@ -66,8 +66,8 @@ public class AdicionaController implements Serializable {
               
         
     }
-  //  @Get("/show/add/{produto.id}/{categoria.id}")
-    public void removeitem(Produto produto, final Categoria categoria) {
+    //@Get("/jsp/adiciona/list{produto.id}/{categoria.id}")
+    public void removeItem(Produto produto, final Categoria categoria) {
         Produto p = this.prDao.getById(produto);
         this.prDao.startTransaction();
 
@@ -80,6 +80,12 @@ public class AdicionaController implements Serializable {
         });
         this.prDao.commitTransaction();
         this.result.redirectTo(ProdutoController.class).list();
+    }
+    
+    @Get("jsp/adiciona/lista")
+    public List<Produto> lista(){
+         this.result.include("listaList", this.prDao.getAll());
+         return prDao.getAll();
     }
     
     @Get("/jsp/adiciona/show/{produto.id}")

@@ -128,6 +128,7 @@ public class ClienteController implements Serializable {
     private void createUsuario(Usuario usuario,Cliente cliente){
         this.uDao.startTransaction();
          usuario.setCliente(clDao.getById(cliente));
+         usuario.setTipo("C");
         this.uDao.save(usuario);
         this.uDao.commitTransaction();
       

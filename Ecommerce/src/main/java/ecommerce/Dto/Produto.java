@@ -55,6 +55,7 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     private List<Categoria> categoria; 
     
     
+    
     @Override
     public Integer getId() {
         return this.id; 
@@ -129,7 +130,4 @@ public class Produto implements AbstractDto<Integer>,Serializable {
     public void setCategoria(List<Categoria> categoria) {
         this.categoria = categoria;
     }
-    
-    
-    
 }

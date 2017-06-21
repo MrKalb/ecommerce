@@ -57,7 +57,7 @@ public class EstoqueController implements Serializable  {
     }
     
     @Post("/jsp/estoque/show")
-    public void updade(Estoque estoque){
+    public void update(Estoque estoque){
         this.result.include("produtoList", this.prdDao.getAll());
         this.estDao.startTransaction();
         Estoque est = estDao.getById(estoque);
@@ -91,5 +91,6 @@ public class EstoqueController implements Serializable  {
         this.estDao.commitTransaction();
         this.result.redirectTo(this).list();
     }
+    
 
 }

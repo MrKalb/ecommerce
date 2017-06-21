@@ -66,7 +66,7 @@ public class ClientInterceptor  {
             this.result.redirectTo(ClienteController.class).login();
         }
         else{
-            stack.next( );
+            stack.next();
         }
     }
     

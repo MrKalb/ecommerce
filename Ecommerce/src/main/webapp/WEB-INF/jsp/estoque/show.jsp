@@ -27,7 +27,7 @@
             <br>
             <label for="quantidade">Digite a quantidade</label>
             <br>
-            <input type="text" id="quantidade" name="quantidade">
+            <input type="text" value="${estoque.quantidade}"  id="estoque.quantidade" name="estoque.quantidade"/>    
             <br>
             <input type="submit" value="Salvar">
         </form>
