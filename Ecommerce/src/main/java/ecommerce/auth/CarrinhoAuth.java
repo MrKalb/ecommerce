@@ -47,7 +47,7 @@ public class CarrinhoAuth implements Serializable {
     }
 
     public Carrinho getCarrinho(){
-        if (carrinho == null || carrinho.getSts() == "S") {
+        if (carrinho == null || carrinho.getSts().equals("S")) {
            criaCarrinho(); 
         }
            return carrinho; 

@@ -23,11 +23,14 @@ import ecommerce.Dto.ItemPedido;
 import ecommerce.Dto.Produto;
 import ecommerce.Dto.Venda;
 import ecommerce.PersistenceManager.PersistenceManager;
+import ecommerce.annotations.Client;
 import ecommerce.auth.Authenticator;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 /**
@@ -36,7 +39,7 @@ import javax.inject.Inject;
  */
 @Controller
 @RequestScoped
-public class VendaController {
+public class VendaController implements Serializable {
 
     private final VendaDao vDao;
     private final ItemPedidoDao ipDao;
@@ -73,11 +76,16 @@ public class VendaController {
             for (ItemPedido ip : ipe ) {
             this.total += ip.getProduto().getVlrVenda() * ip.getQuantidade();
         }
+            this.result.include("vendaProd",total);
             frete = (float) ((total*1.50) -total); 
+            this.result.include("frete",frete);
+            this.result.include("total",total);
+            
     }
     
+    @Client
     @Post("/jsp/venda/finaliza")
-    public void finaliza(Venda venda) {
+    public void finalizaVenda(Venda venda){
         Date data = new Date(System.currentTimeMillis());
         Carrinho car = carDao.getCarrinho(auth.getUsuario().getCliente().getId());
         Entrega et = new Entrega(); 
@@ -101,24 +109,24 @@ public class VendaController {
         et.setNumeroPedido(venda.getNumeroPedido());
         et.setIdvenda(venda.getId());
         et.setTransporte(venda.getTransportadora());
+        et.setCliente(auth.getUsuario().getCliente());
         this.etDao.save(et);
         this.etDao.commitTransaction();
         this.result.redirectTo(ProdutoController.class).lista();
     }
 
-    @Get("/jsp/venda/finaliza")
-    public List<Venda> list(){
-        this.result.include("vendaList", this.vDao.getAll());
-        return this.vDao.getAll();
+    @Get("/jsp/venda/list")
+    public List<ItemPedido> list(){
+        this.result.include("vendaList", this.clDao.getItem(auth.getUsuario().getCliente().getId()));
+        return this.clDao.getItem(auth.getUsuario().getCliente().getId());
     }
-    
+    @Client
     @Get("/jsp/venda/finaliza")
     public Carrinho finaliza() {
         this.result.include("itemList", clDao.getItem(auth.getUsuario().getCliente().getId()));
         this.result.include("transpList", this.trDao.getAll());
         this.result.include("formaList", this.fpDao.getAll());
         return this.carDao.getCarrinho(auth.getUsuario().getCliente().getId());
-
     }
 
 }

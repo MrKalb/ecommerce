@@ -10,6 +10,7 @@
                 <li class="nav-item active-result">
                     <a class="nav-link d-inline-flex" href="${linkTo[ProdutosController].lista}">Home</a>
                     <a class="nav-link d-inline-flex" href="${linkTo[ClienteController].login}">Login</a>
+                    <a class="nav-link d-inline-flex" href="${linkTo[VendaController].finaliza}">Finalizar Venda</a>
                     <a class="nav-link d-inline-flex text-right " href="${linkTo[ProdutoController].list}">Acesso Restrito</a>
                 </li>
             </ul>

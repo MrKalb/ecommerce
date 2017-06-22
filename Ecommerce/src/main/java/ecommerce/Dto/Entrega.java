@@ -41,6 +41,10 @@ public class Entrega implements AbstractDto<Integer>,Serializable {
     @OneToOne
     private Transportadora transporte; 
     
+    @OneToOne
+    @JoinColumn(name = "idcliente")
+    private Cliente cliente; 
+    
     
     @Override
     public Integer getId() {
@@ -101,6 +105,20 @@ public class Entrega implements AbstractDto<Integer>,Serializable {
      */
     public void setIdvenda(Integer idvenda) {
         this.idvenda = idvenda;
+    }
+
+    /**
+     * @return the cliente
+     */
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    /**
+     * @param cliente the cliente to set
+     */
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
     

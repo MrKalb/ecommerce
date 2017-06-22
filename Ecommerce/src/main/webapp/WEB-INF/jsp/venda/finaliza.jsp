@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Finalizando Venda</h1>
-        <form action="${linkTo[VendaController].finaliza}" method="POST">
+        <form action="${linkTo[VendaController].finalizaVenda}" method="POST">
             <input type="hidden" name="carrinho.id" value="${carrinho.id}"/>
             <table>
                 <tr>
