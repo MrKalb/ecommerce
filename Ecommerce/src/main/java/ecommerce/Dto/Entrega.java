@@ -120,6 +120,13 @@ public class Entrega implements AbstractDto<Integer>,Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
     
     
 }

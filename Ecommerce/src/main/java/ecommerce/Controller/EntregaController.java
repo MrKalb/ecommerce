@@ -28,45 +28,45 @@ import javax.inject.Inject;
 @Controller
 @SessionScoped
 public class EntregaController implements Serializable {
-    
-    private final EntregaDao enDao; 
-    
+
+    private final EntregaDao enDao;
+
     @Inject
     Result result;
-    
+
     @Inject
     private Authenticator auth;
-    
-    public EntregaController(){
-        this.enDao= new EntregaDao(PersistenceManager.getEntityManager());
+
+    public EntregaController() {
+        this.enDao = new EntregaDao(PersistenceManager.getEntityManager());
     }
-    
+
     @Get("/jsp/entrega/lista")
-    public List<Entrega> lista(){
-           this.result.include("entregaList", enDao.getAll());
+    public List<Entrega> lista() {
+        this.result.include("entregaList", enDao.getAll());
         return enDao.getAll();
     }
-    
+
     @Client
     @Get("/jsp/entrega/list")
-    public List<Entrega> list(){
+    public List<Entrega> list() {
         this.result.include("entregaList", enDao.getEntrega(this.auth.getUsuario().getCliente().getId()));
         return this.enDao.getEntrega(this.auth.getUsuario().getCliente().getId());
     }
-    
+
     @Post("/jsp/entrega/show")
-    public void update (Entrega entrega){
+    public void update(Entrega entrega) {
         this.enDao.startTransaction();
         Entrega en = enDao.getById(entrega);
         en.setStatus(entrega.getStatus());
         this.enDao.save(en);
         this.enDao.commitTransaction();
-        this.result.redirectTo(this).list();
+        this.result.redirectTo(ProdutoController.class).list();
     }
-    
-    @Get("/jsp/entrega/show")
-    public Entrega show (Entrega entrega){
+
+    @Get("/jsp/entrega/show/{entrega.id}")
+    public Entrega show(Entrega entrega) {
         return this.enDao.getById(entrega);
     }
-    
+
 }
