@@ -11,13 +11,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Listagem de Produtos por categoria</h1>
-        <table border="1">
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Listagem de Produtos por categoria</h1>
+        <table class="table-hover table-bordered">
             <tr> 
                 <th>Nome</th>
-                <th>Tipo</th>
                 <th>Valor</th>
             </tr>
             <c:forEach items="${tipoList}" var="tip" varStatus="sts">
@@ -29,7 +30,7 @@
                 </tr>
             </c:forEach>
         </table>
-        <a href="${linkTo[ProdutoController].list}">Voltar para listagem de produtos</a>
+        <a href="${linkTo[ProdutoController].lista}">Voltar para listagem de produtos</a>
         
     </body>
 </html>

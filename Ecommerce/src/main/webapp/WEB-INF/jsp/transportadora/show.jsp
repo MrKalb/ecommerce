@@ -13,32 +13,40 @@
         <title>Lujinha</title>
     </head>
     <body>
-        <h1>Editando Transportadora</h1>
+        <h1 class="card-title">Editando Transportadora</h1>
         <form action="${linkTo[TransportadoraController].update}" method="POST">
             <input type="hidden" name="transportadora.id" value="${transportadora.id}"/>
-            <label for="transportadora.razao">Razao</label>            
+            <div class="form-group">
+                <label class="form-label" for="transportadora.razao">Razao</label>            
             <br>
-            <input type="text" value="${transportadora.razao}"  id="transportadora.razao" name="transportadora.razao"/>
+            <input class="form-control" type="text" value="${transportadora.razao}"  id="transportadora.razao" name="transportadora.razao"/>
+            </div>
             <br>
-            <label for="transportadora.fantasia">Fantasia</label>
+            <div class="form-group">
+                <label class="form-label" for="transportadora.fantasia">Fantasia</label>
             <br>
-            <input type="text" value="${transportadora.fantasia}"  id="transportadora.fantasia" name="transportadora.fantasia"/>  
+            <input class="form-control" type="text" value="${transportadora.fantasia}"  id="transportadora.fantasia" name="transportadora.fantasia"/>  
+            </div>
             <br>
-            <label for="transportadora.endereco">Endereco</label> 
+            <div class="form-group">
+                <label class="form-label" for="transportadora.endereco">Endereco</label> 
             <br>
-            <input type="text" value="${transportadora.endereco}"  id="transportadora.endereco" name="transportadora.endereco"/>     
+            <input class="form-control" type="text" value="${transportadora.endereco}"  id="transportadora.endereco" name="transportadora.endereco"/>     
+            </div>
             <br>
-            <label for="transportadora.cnpj">CNPJ</label>            
+            <div class="form-group">
+                <label class="form-label" for="transportadora.cnpj">CNPJ</label>            
             <br>
-            <input type="text" value="${transportadora.cnpj}"  id="transportadora.cnpj" name="transportadora.cnpj"/>     
+            <input class="form-control" type="text" value="${transportadora.cnpj}"  id="transportadora.cnpj" name="transportadora.cnpj"/>     
+            </div>
             <br>
-            <select id="cidade" name="transportadora.cidade.id">
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="cidade" name="transportadora.cidade.id">
                 <c:forEach items="${cidadeList}" var="cid">
                     <option value="${cid.id}">${cid.descricao}</option>
                 </c:forEach>
             </select>
             <br>
-            <input type="submit" value="Salvar">
+            <button class="btn btn-primary" type="submit">Salvar</button>
 
         </form>
     </body>

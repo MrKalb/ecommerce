@@ -17,6 +17,8 @@
                         <a class="nav-link d-inline-flex" href="${linkTo[CidadeController].list}">Cidades</a>
                         <a class="nav-link d-inline-flex" href="${linkTo[ProdutoController].list}">Produtos</a>
                         <a class="nav-link d-inline-flex" href="${linkTo[EstoqueController].list}">Estoque</a>
+                        <a class="nav-link d-inline-flex" href="${linkTo[CategoriaController].list}">Categoria</a>
+                        <a class="nav-link d-inline-flex" href="${linkTo[EntregaController].lista}">Vendas</a>
                         <a class="nav-link d-inline-flex" href="${linkTo[TransportadoraController].list}">Transportadoras</a>
                         <a class="nav-link d-inline-flex" href="${linkTo[PagamentoController].list}">Formas</a>
                     </li>

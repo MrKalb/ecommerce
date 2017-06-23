@@ -10,11 +10,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Categorias</title>
+        <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Listagem de Categorias</h1>
-        <table border="1">
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Listagem de Categorias</h1>
+        <table class="table-hover table-bordered">
             <tr>
                 <th>#ID</th>
                 <th>Descricao</th>

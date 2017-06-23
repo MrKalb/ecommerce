@@ -5,24 +5,35 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Lujinha</title>
+         <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Carrinho</h1>
+        <h1 class="card-title">Carrinho</h1>
+         <c:import url="/WEB-INF/jsp/header.jsp"/>
         <form action="${linkTo[CarrinhoController].adicionaCarrinho}" method="POST">
-        <input type="hidden" name="produto.id" value="${produto.id}"/>
-            <br>
-            <p>"${produto.descricao}</p>
-            <br>
-            <p>${produto.vlrVenda}</p>
-            <br>
-            <input type="text" name="quantidade"  id="quantidade" placeholder="Quantidade">
-            <br>
-            <input type="submit" value="Continuar">
+            <input type="hidden" name="produto.id" value="${produto.id}"/>
+            <div class="card-text">
+                <br>
+                <p>"${produto.descricao}</p>
+                <br>
+            </div>
+            <div class="card-text">
+                <p>${produto.vlrVenda}</p>
+                <br>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="quantidade">Quantidade</label>
+                <br>
+                <input class="form-control" type="text" name="quantidade"  id="quantidade" placeholder="Quantidade">
+            </div>
+                <br>
+                <button class="btn btn-primary" type="submit">Salvar</button> 
         </form>
     </body>
 </html>

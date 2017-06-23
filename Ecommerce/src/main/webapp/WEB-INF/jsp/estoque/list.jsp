@@ -11,10 +11,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Listagem Estoque</h1>
-        <table border="1">
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Listagem Estoque</h1>
+        <table class="table-hover table-bordered">
             <tr>
                 <th>#Id</th>
                 <th>Produto</th>
@@ -30,10 +32,11 @@
                     <td><a href="${linkTo[EstoqueController].remove(est)}">Remover</a></td>
                 </tr>
             </c:forEach>
-            
-            
         </table>
        
+        <footer class="card-footer">
+            <a href="${linkTo[EstoqueController].adiciona}">Adicionar</a>
+        </footer>
         
     </body>
 </html>

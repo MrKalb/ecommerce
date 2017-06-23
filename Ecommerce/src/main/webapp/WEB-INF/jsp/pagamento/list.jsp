@@ -11,10 +11,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Lista de Formas de pagamento</h1>
-        <table border="1">
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Lista de Formas de pagamento</h1>
+        <table class="table-hover table-hover">
             <tr>
                 <th>#Id</th>
                 <th>Descricao</th>
@@ -26,9 +28,10 @@
                     <td> <a href="${linkTo[PagamentoController].show(pag)}">Editar </a></td>
                     <td> <a href="${linkTo[PagamentoController].remove(pag)}" onclick="return confirm('Deseja realmente excluir ?')">Remover</a>;
                 </tr>
-
             </c:forEach>
         </table>
-
+        <div class="card-footer">
+            <a href="${linkTo[PagamentoController].adiciona}">Adicionar Forma</a>
+        </div>
     </body>
 </html>

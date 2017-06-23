@@ -11,25 +11,29 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Pedidos</h1>
-        <table class="table-hover">
+        <c:import url="/WEB-INF/jsp/nav.jsp"/>
+        <h1 class="card-title">Pedidos</h1>
+        <table class="table-hover table-bordered">
             <tr>
                 <th>#Id</th>
                 <th>Numero Venda</th>
                 <th>Numero Pedido</th>
                 <th>Transportadora</th>
                 <th>Status</th>
+                <th>Açoes</th>
             </tr>
             
-            <c:forEach items="${listaList}" var="ent" varStatus="sts">
+            <c:forEach items="${entregaList}" var="ent" varStatus="sts">
                 <tr align="center">
                     <td>${ent.id}</td>
                     <td>${ent.idvenda}</td>
                     <td>${ent.numeroPedido}</td>
                     <td>${ent.transporte.razao}</td>
                     <td>${ent.status}</td>
+                    <td><a href="${linkTo[EntregaController].show(ent)}">editar Status</a></td>
                 </tr>
             </c:forEach>
         </table>

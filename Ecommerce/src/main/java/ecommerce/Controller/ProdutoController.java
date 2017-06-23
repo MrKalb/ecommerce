@@ -7,18 +7,15 @@ package ecommerce.Controller;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import ecommerce.Dao.CategoriaDao;
 import ecommerce.Dao.ProdutoDao;
-import ecommerce.Dto.Categoria;
 import ecommerce.Dto.Produto;
 import ecommerce.PersistenceManager.PersistenceManager;
 import ecommerce.annotations.Administrative;
-import ecommerce.annotations.Client;
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -91,7 +88,7 @@ public class ProdutoController implements Serializable {
         this.result.redirectTo(this).list();
     }
 
-    @Get("/jsp/produto/list/{produto.id}")
+   @Get("/jsp/produto/list/{produto.id}")
     public void remove(Produto produto) {
         produto = prDao.getById(produto);
         prDao.startTransaction();

@@ -10,26 +10,29 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Editando cidade</title>
+        <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Editando a cidade ${cidade.id}</h1>
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Editando a cidade ${cidade.id}</h1>
         <form action="${linkTo[CidadeController].update}" method="POST">
             <input type="hidden" name="cidade.id" value="${cidade.id}"/>
-            <label for="cidade.descricao">Descricao</label> 
+            <div class="form-group">
+                <label class="form-label" for="cidade.descricao">Descricao</label> 
             <br>
-            <input type="text" value="${cidade.descricao}" id="cidade.descricao" name="cidade.descricao">
+            <input class="form-control" type="text" value="${cidade.descricao}" id="cidade.descricao" name="cidade.descricao">
+            </div>
             <br>
-            <label for="estado">Escolha o estado</label>
+            <label class="form-label" for="estado">Escolha o estado</label>
             <br>
-            <select id="estado" name="cidade.estado.id">
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="estado" name="cidade.estado.id">
                 <c:forEach items="${estadoList}" var="est">
                     <option value="${est.id}">${est.descricao}</option>
                 </c:forEach>
             </select>
             <br>
-            <input type="submit" value="salvar">
-            
+            <button class="btn btn-primary" type="submit">Salvar</button>   
         </form>
         
     </body>

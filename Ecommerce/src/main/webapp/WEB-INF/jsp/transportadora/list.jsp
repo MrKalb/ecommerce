@@ -11,10 +11,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Lista de Transportadoras</h1>
-        <table border="1">
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Lista de Transportadoras</h1>
+        <table class="table-hover table-bordered">
             <tr>
                 <th>#Id</th>
                 <th>Razao</th>
@@ -33,9 +35,12 @@
                     <td>${tr.cidade.descricao}</td>
                     <td><a href="${linkTo[TransportadoraController].show(tr)}">Editar</a></td>
                     <td><a href="${linkTo[TransportadoraController].remove(tr)}" onclick="return confirm('Deseja realmente excluir ?')">Remover</a></td>
-                    
+
                 </tr>
             </c:forEach>
         </table>
+        <footer class="card-footer">
+            <a href="${linkTo[TransportadoraController].adiciona}">Adiciona</a>
+        </footer>
     </body>
 </html>

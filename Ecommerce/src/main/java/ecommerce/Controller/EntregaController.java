@@ -7,10 +7,12 @@ package ecommerce.Controller;
 
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
 import ecommerce.Dao.EntregaDao;
 import ecommerce.Dto.Entrega;
 import ecommerce.PersistenceManager.PersistenceManager;
+import ecommerce.annotations.Administrative;
 import ecommerce.annotations.Client;
 import ecommerce.auth.Authenticator;
 import java.io.Serializable;
@@ -39,19 +41,20 @@ public class EntregaController implements Serializable {
         this.enDao= new EntregaDao(PersistenceManager.getEntityManager());
     }
     
-    @Client
     @Get("/jsp/entrega/lista")
     public List<Entrega> lista(){
-        this.result.include("listaList", enDao.getEntrega(this.auth.getUsuario().getCliente().getId()));
-        return this.enDao.getEntrega(this.auth.getUsuario().getCliente().getId());
-    }
-    
-    @Get("/jsp/entrega/list")
-    public List<Entrega> list(){
-        this.result.include("entregaList", enDao.getAll());
+           this.result.include("entregaList", enDao.getAll());
         return enDao.getAll();
     }
     
+    @Client
+    @Get("/jsp/entrega/list")
+    public List<Entrega> list(){
+        this.result.include("entregaList", enDao.getEntrega(this.auth.getUsuario().getCliente().getId()));
+        return this.enDao.getEntrega(this.auth.getUsuario().getCliente().getId());
+    }
+    
+    @Post("/jsp/entrega/show")
     public void update (Entrega entrega){
         this.enDao.startTransaction();
         Entrega en = enDao.getById(entrega);
@@ -61,6 +64,7 @@ public class EntregaController implements Serializable {
         this.result.redirectTo(this).list();
     }
     
+    @Get("/jsp/entrega/show")
     public Entrega show (Entrega entrega){
         return this.enDao.getById(entrega);
     }

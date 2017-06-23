@@ -24,14 +24,29 @@
                     <br>
                     <input class="form-control" type="password" name="usuario.password" id="usuario.password" placeholder="Digite a senha">
                     <br>
-                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" value="Entrar"> 
+                    <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" id="btn-01">Entrar</button> 
                     <br>
                 </form>
             </div>
-                    <div class="card-footer">
-                        <a href="${linkTo[ClienteController].adiciona}">Novo ? </a>
-                    </div>
+            <div class="card-footer">
+                <a href="${linkTo[ClienteController].adiciona}">Novo ? </a>
+            </div>
         </div>
+        <script>
+            function $(id) {
+                var el = document.getElementById(id);
+                if (!el) {
+                    el = document.createElement('div');
+                    el.setAttribute('id', id);
+                    document.body.insertAdjacentElement('beforeEnd', el);
+                }
+                return el;
+            }
 
+         //   $('btn-01').addEventListener('click', function () {
+              //  window.location.replace("produto/lista");
+
+            //});
+        </script>
     </body>
 </html>

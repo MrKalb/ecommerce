@@ -11,35 +11,46 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Bem vindo !! </h1>
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Bem vindo !! </h1>
         <br>
-        <h2>Preencha os campos abaixo</h2>
+        <h2 class="card-subtitle">Preencha os campos abaixo</h2>
         <br>
         <form action="${linkTo[ClienteController].adiciona}" method="POST">
-            <input type="text" id="cliente.nome" name="cliente.nome" placeholder="Nome Completo">
+            <div class="form-group">
+                <input class="form-label" type="text" id="cliente.nome" name="cliente.nome" placeholder="Nome Completo">
             <br>
-            <input type="text" id="cliente.endereco" name="cliente.endereco" placeholder="Endereco">
+            <input class="form-control" type="text" id="cliente.endereco" name="cliente.endereco" placeholder="Endereco">
+            </div>
             <br>
-            <input type="text" id="cliente.enderecoEntrega" name="cliente.enderecoEntrega" placeholder="Endereco de Entrega">
+            <div class="form-group">
+                <input class="form-label" type="text" id="cliente.enderecoEntrega" name="cliente.enderecoEntrega" placeholder="Endereco de Entrega">
             <br>
-            <input type="text" id="cliente.cep" name="cliente.cep" placeholder="CEP">
+            <input class="form-control" type="text" id="cliente.cep" name="cliente.cep" placeholder="CEP">
+            </div>
             <br>
-            <input type="text" id="cliente.contato" name="cliente.contato" placeholder="Contato">
+            <div class="form-group">
+                <input class="form-label" type="text" id="cliente.contato" name="cliente.contato" placeholder="Contato">
             <br>
-            <input type="text" id="cliente.cpf" name="cliente.cpf" placeholder="CPF">
+            <input class="form-control" type="text" id="cliente.cpf" name="cliente.cpf" placeholder="CPF">
             <br>
-            <select id="cidade" name="cliente.cidade.id">
+            </div>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="cidade" name="cliente.cidade.id">
                 <c:forEach items="${cidadeList}" var="cid">
                     <option value="${cid.id}">${cid.descricao}</option>
                 </c:forEach>
             </select>
-            <input type="text" id="usuario.email" name="usuario.email" placeholder="Email">
             <br>
-            <input type="password" id="usuario.password" name="usuario.password" placeholder="senha">
+            <div class="form-group">
+                <input class="form-label" type="text" id="usuario.email" name="usuario.email" placeholder="Email">
             <br>
-            <input type="submit" value="Salvar">
+            <input class="form-control" type="password" id="usuario.password" name="usuario.password" placeholder="senha">
+            </div>
+            <br>
+            <button class="btn btn-primary" type="submit">Salvar</button>
         </form>
     </body>
 </html>

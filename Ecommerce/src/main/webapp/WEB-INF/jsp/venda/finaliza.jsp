@@ -10,13 +10,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
-    <body>
-        <h1>Finalizando Venda</h1>
+    <body class="align-contend center">
+        <h1 class="card-title">Finalizando Venda</h1>
+        <c:import url="/WEB-INF/jsp/nav.jsp"/>
         <form action="${linkTo[VendaController].finalizaVenda}" method="POST">
             <input type="hidden" name="carrinho.id" value="${carrinho.id}"/>
-            <table>
+            <table class="table-hover table-bordered">
+                <h2 class="card-subtitle">Produtos</h2>
                 <tr>
                     <th>Produto</th>
                     <th>Valor</th>
@@ -30,19 +33,29 @@
                 </c:forEach>
             </table>
             <br>
-            <select id="transportadora" name="venda.transportadora.id">
+            <label class="form-label">Transportadora</label>
+            <br>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="transportadora" name="venda.transportadora.id">
                 <c:forEach items="${transpList}" var="tr" varStatus="sts">                    
-                        <option value="${tr.id}">${tr.razao}</option>
+                    <option value="${tr.id}">${tr.razao}</option>
                 </c:forEach>
             </select>
             <br>
-            <select id="formapagamento" name="venda.forma.id">
+            <label class="form-label">Forma de Pagamento</label>
+            <br/>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="formapagamento" name="venda.forma.id">
                 <c:forEach items="${formaList}" var="fp" varStatus="sts">                    
-                        <option value="${fp.id}">${fp.descricao}</option>
+                    <option value="${fp.id}">${fp.descricao}</option>
                 </c:forEach>
             </select>
             <br>
-            <input type="submit" value="Confirmar">
+            <div class="card-text">
+                Frete ${frete}
+            </div>
+            <div class="card-footer">
+                Total ${total} 
+            </div>
+            <button class="btn btn-primary" type="submit">Confirmar</button>
         </form>
     </body>
 </html>

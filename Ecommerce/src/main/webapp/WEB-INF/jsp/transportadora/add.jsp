@@ -11,33 +11,43 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Adicionando Transportadora</h1>
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Adicionando Transportadora</h1>
         <form action="${linkTo[TransportadoraController].adiciona}" method="POST">
-            <label for="transportadora.razao">Razao Social </label>
+            <div class="form-group">
+                <label class="form-label" for="transportadora.razao">Razao Social </label>
+                <br>
+                <input class="form-control" type="text" id="transportadora.razao" name="transportadora.razao">
+            </div>
             <br>
-            <input type="text" id="transportadora.razao" name="transportadora.razao">
+            <div class="form-group">
+                <label class="form-label" for="transportadora.fantasia">Nome Fantasia</label>
+                <br>
+                <input class="form-control" type="text" id="transportadora.fantasia" name="transportadora.fantasia">
+            </div>
             <br>
-            <label for="transportadora.fantasia">Nome Fantasia</label>
+            <div class="form-group">
+                <label class="form-label" for="transportadora.endereco">Endereco</label>
+                <br>
+                <input class="form-control" type="text" id="transportadora.endereco" name="transportadora.endereco">
+            </div>
             <br>
-            <input type="text" id="transportadora.fantasia" name="transportadora.fantasia">
+            <div class="form-group">
+                <label class="form-label" for="transportadora.cnpj">CNPJ</label>
+                <br>
+                <input class="form-control" type="text" id="transportadora.cnpj" name="transportadora.cnpj"> 
+            </div>
             <br>
-            <label for="transportadora.endereco">Endereco</label>
-            <br>
-            <input type="text" id="transportadora.endereco" name="transportadora.endereco">
-            <br>
-            <label for="transportadora.cnpj">CNPJ</label>
-            <br>
-            <input type="text" id="transportadora.cnpj" name="transportadora.cnpj"> 
-            <br>
-            <select id="cidade" name="transportadora.cidade.id">
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="cidade" name="transportadora.cidade.id">
                 <c:forEach items="${cidadeList}" var="cid">
                     <option value="${cid.id}">${cid.descricao}</option>
                 </c:forEach>
             </select>
             <br>
-            <input type="submit" value="Salvar">
+            <button class="btn btn-primary" type="submit">Salvar</button>
         </form>
     </body>
 </html>

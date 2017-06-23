@@ -10,11 +10,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Listagem de cidades - Lujinha</title>
+        <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Listagem de cidades</h1>
-        <table border="1">
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Listagem de cidades</h1>
+        <table class="table-hover table-bordered">
             <tr> 
                 <th>#Id</th>
                 <th>Nome</th>
@@ -29,8 +31,8 @@
                     <td> <a href="${linkTo[CidadeController].remove(cid)}">Remover</a> </td>
                 </tr>
             </c:forEach>
-                <a href="${linkTo[CidadeController].add}">adicionar cidade </a>
+            <a href="${linkTo[CidadeController].add}">adicionar cidade </a>
         </table>
-        
+
     </body>
 </html>

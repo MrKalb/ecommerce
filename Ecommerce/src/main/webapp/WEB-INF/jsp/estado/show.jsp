@@ -11,17 +11,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-         <div class="content">
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Editando Estado</h1>
             <form action="${linkTo[EstadoController].update}" method="POST">
                 <input type="hidden" name="estado.id" value="${estado.id}"/>
-                <label for="estado.descricao">Descricao</label>
+                <div class="form-group">
+                    <label class="form-label" for="estado.descricao">Descricao</label>
                 <br>
-                <input type="text" value="${estado.descricao}"  id="estado.descricao" name="estado.descricao"/>            
+                <input class="form-control" type="text" value="${estado.descricao}"  id="estado.descricao" name="estado.descricao"/>            
+                </div>
                 <br>
-                <input type="submit" value="salvar"> 
+                <button class="btn btn-primary" type="submit">Salvar</button>
             </form>
-         </div>
     </body>
 </html>

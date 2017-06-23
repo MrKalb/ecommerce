@@ -10,30 +10,47 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
+         <c:import url="/WEB-INF/jsp/nav.jsp"/>
         <h1>Carrinho</h1>
-        <table class="table-hover">
+        <table class="table-hover table-bordered">
             <tr>
-                <th>Descricao</th>
-                <th>Valor Venda</th>
-                <th>Quantidade</th>
+                <th colspan="2">Descricao</th>
+                <th colspan="1">Valor Produto</th>
+                <th colspan="1">Quantidade</th>
             </tr>
-            
-            <c:forEach items="${vendaList}" var="v" varStatus="sts">
-                <tr align="center">
-                    
-                    <td>${v.produto.descricao}</td>
-                    <td>${v.produto.vlrVenda}</td>
-                    <td>${v.quantidade}</td>
-                </tr>
-            </c:forEach>
+                <c:forEach items="${itemList}" var="item" varStatus="sts">
+                    <tr>
+                        <td colspan="2">${item.produto.descricao}</td>
+                        <td colspan="1">${item.produto.vlrVenda}</td>
+                        <td colspan="1">${item.quantidade}</td>
+                    </tr>
+                </c:forEach>
         </table>
-                <div>
-                    <label>Preco Final</label>
+        <div class="card-container card-block">
+            <div class="card-text text-right">
+                    <label>Total de produtos</label>
                     <br>
                     <label>${preco}</label>
                 </div>
+                <br>
+                <div class="card-text text-right">
+                    <label>Frete</label>
+                    <br>
+                    <label>${frete}</label>
+                </div>
+                <br>
+                <div class="card-text text-right">
+                    <label>Total</label>
+                    <br>
+                    <label>${total}</label>
+                </div>
+        </div>
+                <footer class="card-footer">
+                    <a class="card-text" href="${linkTo[VendaController].finaliza}">Finalizar Venda</a>
+                </footer>
     </body>
 </html>

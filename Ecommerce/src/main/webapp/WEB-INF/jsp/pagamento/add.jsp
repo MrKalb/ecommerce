@@ -12,11 +12,16 @@
         <title>Cadastro Formas de Pagamento</title>
     </head>
     <body>
-        <h1>Cadastro de formas de Pagamento</h1>
+        <h1 class="card-title">Cadastro de formas de Pagamento</h1>
         
         <form action="${linkTo[PagamentoController].adiciona}" method="POST">
-            <input type="text" id="pagamento.descricao" name="pagamento.descricao" placeholder="Digite a descricao">
-            <input type="submit" value="Salvar">
+            <div class="form-group">
+                <label class="form-label" for="pagamento.descricao">Descricao</label>
+            <br>
+            <input class="form-control" type="text" id="pagamento.descricao" name="pagamento.descricao">
+            </div>
+            <br>
+            <button class="btn btn-primary" type="submit">Salvar</button>
         
         </form>
     </body>

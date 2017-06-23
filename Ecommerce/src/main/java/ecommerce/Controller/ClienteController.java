@@ -12,7 +12,6 @@ import br.com.caelum.vraptor.Result;
 import ecommerce.Dao.CidadeDao;
 import ecommerce.Dao.ClienteDao;
 import ecommerce.Dao.UsuarioDao;
-import ecommerce.Dto.Categoria;
 import ecommerce.Dto.Cliente;
 import ecommerce.Dto.Usuario;
 import ecommerce.PersistenceManager.PersistenceManager;

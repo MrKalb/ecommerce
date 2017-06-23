@@ -11,23 +11,26 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Estoque</h1>
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Estoque</h1>
         <form action="${linkTo[EstoqueController].adiciona}" method="POST">
-            <label for="produto">Escolha o produto</label>
+            <label class="form-label" for="produto">Escolha o produto</label>
             <br>
-            <select id="produto" name="estoque.produto.id">
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="produto" name="estoque.produto.id">
                 <c:forEach items="${produtoList}" var="prod">
                     <option value="${prod.id}">${prod.descricao}</option>
                 </c:forEach>
             </select>
             <br>
-            <label for="estoque.quantidade">Quantidade</label>
+            <div class="form-group">
+                <label class="form-label" for="estoque.quantidade">Quantidade</label>
             <br>
-            <input type="text" id="estoque.quantidade" name="estoque.quantidade">
+            <input class="form-control" type="text" id="estoque.quantidade" name="estoque.quantidade">
             <br>
-            <input type="submit" value="Salvar">  
+            <button class="btn btn-primary" type="submit">Salvar</button>
         </form>
     </body>
 </html>

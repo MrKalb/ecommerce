@@ -10,19 +10,21 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Lujinha</title>
+            <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-               <h1>Listagem de Produtos por categoria</h1>
-        <table border="1">
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
+        <h1 class="card-title">Listagem de Produtos por categoria</h1>
+        <table class="table-hover table-bordered">
             <tr> 
                 <th>Nome</th>
-                <th>Tipo</th>
+                <th>Valor</th>
             </tr>
             <c:forEach items="${listaList}" var="tip" varStatus="sts">
                 <tr>
                     <td>${tip.descricao}</td>
-                    <td>${tip.categoria}</td>
+                    <td>${tip.vlrVenda}</td>
                     <td> <a href="${linkTo[AdicionaController].removeItem(tip, tip.categoria.id)}">Remover</a></td>
                 </tr>
             </c:forEach>

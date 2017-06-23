@@ -15,7 +15,7 @@
     </head>
     <body>
         <c:import url="/WEB-INF/jsp/header.jsp"/>
-        <h1>Listagem de Produto</h1>
+        <h1 class="card-title">Listagem de Produto</h1>
         <table class="table">
             <tr>
                 <th>#Id</th>
@@ -33,18 +33,9 @@
                     <td>${prod.codBarras}</td>
                     <td> <a href="${linkTo[AdicionaController].show(prod)}">Adicionar Categoria</a>
                     <td> <a href="${linkTo[ProdutoController].show(prod)}">Editar Produto</a></td>
-                    <td> <a href="${linkTo[ProdutoController].remove(prod)}" onclick="return confirm('Deseja realmente excluir ?')">Remover</a>;
+                    <td> <a href="${linkTo[ProdutoController].remove(prod)}">Remover</a>
                 </tr>
             </c:forEach>
         </table>
-        <br>
-        <form class="form-control" action="${linkTo[AdicionaController].list}" method="POST">
-            <br>
-            <h2 class="card-subtitle">Pesquisa de produtos por Categoria</h2> 
-            <br>
-            <input class="card-text" type="text" id="tipo" name="tipo" placeholder="Digite a categoria desejada">
-            <input class="card-text" type="submit" value="Pesquisar">
-            <br>
-        </form>
     </body>
 </html>

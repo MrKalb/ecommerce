@@ -11,15 +11,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lujinha</title>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
-        <h1>Adicionando Categorias</h1>
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
+        <h1 class="card-title">Adicionando Categorias</h1>
         <form action="${linkTo[AdicionaController].adicionaCategoria}" method="POST">
             <input type="hidden" name="produto.id" value="${produto.id}"/>
+            <div class="card-text">
             <br>
             <p>${produto.descricao}</p>
             <br>
-            <label>Escolha a Categoria</label>
+            </div>
+            <label class="form-label" for="categoria">Escolha a Categoria</label>
             <br>
             <select id="categoria" name="categoria.id">
                 <c:forEach items="${categoriaList}" var="cat" varStatus="sts">
@@ -27,7 +31,7 @@
                 </c:forEach>
             </select>
             <br>
-            <input type="submit" value="Salvar">
+           <button class="btn btn-primary" type="submit">Salvar</button> 
         </form>
     </body>
 </html>

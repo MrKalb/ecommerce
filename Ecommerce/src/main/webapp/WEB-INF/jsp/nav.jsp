@@ -8,10 +8,12 @@
         <div class="collapse navbar-collapse" id="navbars">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active-result">
-                    <a class="nav-link d-inline-flex" href="${linkTo[ProdutosController].lista}">Home</a>
+                    <a class="nav-link d-inline-flex" href="${linkTo[ProdutoController].lista}">Home</a>
                     <a class="nav-link d-inline-flex" href="${linkTo[ClienteController].login}">Login</a>
                     <a class="nav-link d-inline-flex" href="${linkTo[VendaController].finaliza}">Finalizar Venda</a>
-                    <a class="nav-link d-inline-flex text-right " href="${linkTo[ProdutoController].list}">Acesso Restrito</a>
+                    <a class="nav-link d-inline-flex" href="${linkTo[VendaController].list}">Carrinho</a>
+                    <a class="nav-link d-inline-flex" href="${linkTo[EntregaController].list}">Pedidos</a>
+                    <a class="nav-link d-inline-flex " href="${linkTo[ProdutoController].list}">Acesso Restrito</a>
                 </li>
             </ul>
         </div>
