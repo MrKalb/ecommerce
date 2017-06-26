@@ -108,6 +108,7 @@ public class VendaController implements Serializable {
         et.setIdvenda(venda.getId());
         et.setTransporte(venda.getTransportadora());
         et.setCliente(auth.getUsuario().getCliente());
+        et.setStatus("Aguardando Pagamento.");
         this.etDao.save(et);
         this.etDao.commitTransaction();
         this.result.redirectTo(ProdutoController.class).lista();
