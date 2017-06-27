@@ -15,6 +15,7 @@ import ecommerce.Dao.UsuarioDao;
 import ecommerce.Dto.Cliente;
 import ecommerce.Dto.Usuario;
 import ecommerce.PersistenceManager.PersistenceManager;
+import ecommerce.annotations.Client;
 import ecommerce.auth.Authenticator;
 import java.io.Serializable;
 import java.util.List;
@@ -69,18 +70,18 @@ public class ClienteController implements Serializable {
         
     }
     
-       
-    //@Get("/jsp/cliente/show/{cliente.id}")
-    public Cliente show(Cliente cliente){
-        this.result.include("categoriaLista", this.clDao.getAll());
-        return this.clDao.getById(cliente);
+    @Client 
+    @Get("/jsp/cliente/show/{cliente.id}")
+    public Cliente show(){
+        this.result.include("cidadeList", cidDao.getAll());
+        return this.clDao.getById(auth.getUsuario().getCliente());
     }
     
-    @Post("/jsp/cliente/update")
-    public void update (Cliente cliente) throws Exception{
+    @Post("/jsp/cliente/show")
+    public void update(Cliente cliente) throws Exception{
         this.result.include("cidadeList", cidDao.getAll());
         this.result.include("clienteList",clDao.getAll());
-        Cliente c = clDao.getById(cliente);
+        Cliente c = clDao.getById(auth.getUsuario().getCliente());
         c.setNome(cliente.getNome());
         c.setEndereco(cliente.getEndereco());
         c.setCep(cliente.getCep());
@@ -90,7 +91,7 @@ public class ClienteController implements Serializable {
         c.setCpf(cliente.getCpf());
         this.clDao.save(c);
         this.clDao.commitTransaction();
-        this.result.redirectTo(ProdutoController.class).list();
+        this.result.redirectTo(ProdutoController.class).lista();
     }
     
     

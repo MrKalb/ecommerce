@@ -18,7 +18,6 @@
         <h1 class="card-title">Listagem de vendas</h1>
         <table class="table-hover table-bordered">
             <tr>
-                <th>#Id</th>
                 <th>Numero Venda</th>
                 <th>Numero Pedido</th>
                 <th>Transportadora</th>
@@ -27,7 +26,6 @@
             
             <c:forEach items="${entregaList}" var="ent" varStatus="sts">
                 <tr align="center">
-                    <td>${ent.id}</td>
                     <td>${ent.idvenda}</td>
                     <td>${ent.numeroPedido}</td>
                     <td>${ent.transporte.razao}</td>

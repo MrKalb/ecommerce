@@ -11,11 +11,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Lujinha</title>
-         <c:import url="/WEB-INF/jsp/head.jsp"/>
+        <c:import url="/WEB-INF/jsp/head.jsp"/>
     </head>
     <body>
+        <c:import url="/WEB-INF/jsp/header.jsp"/>
         <h1 class="card-title">Carrinho</h1>
-         <c:import url="/WEB-INF/jsp/header.jsp"/>
         <form action="${linkTo[CarrinhoController].adicionaCarrinho}" method="POST">
             <input type="hidden" name="produto.id" value="${produto.id}"/>
             <div class="card-text">
@@ -32,8 +32,8 @@
                 <br>
                 <input class="form-control" type="text" name="quantidade"  id="quantidade" placeholder="Quantidade">
             </div>
-                <br>
-                <button class="btn btn-primary" type="submit">Salvar</button> 
+            <br>
+            <button class="btn btn-primary" type="submit">Salvar</button> 
         </form>
     </body>
 </html>

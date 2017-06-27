@@ -27,13 +27,13 @@
             </div>
             <br>
             <div class="form-group">
-                <input class="form-label" type="text" id="cliente.enderecoEntrega" name="cliente.enderecoEntrega" placeholder="Endereco de Entrega">
+                <input class="form-control" type="text" id="cliente.enderecoEntrega" name="cliente.enderecoEntrega" placeholder="Endereco de Entrega">
             <br>
             <input class="form-control" type="text" id="cliente.cep" name="cliente.cep" placeholder="CEP">
             </div>
             <br>
             <div class="form-group">
-                <input class="form-label" type="text" id="cliente.contato" name="cliente.contato" placeholder="Contato">
+                <input class="form-control" type="text" id="cliente.contato" name="cliente.contato" placeholder="Contato">
             <br>
             <input class="form-control" type="text" id="cliente.cpf" name="cliente.cpf" placeholder="CPF">
             <br>
@@ -45,7 +45,7 @@
             </select>
             <br>
             <div class="form-group">
-                <input class="form-label" type="text" id="usuario.email" name="usuario.email" placeholder="Email">
+                <input class="form-control" type="text" id="usuario.email" name="usuario.email" placeholder="Email">
             <br>
             <input class="form-control" type="password" id="usuario.password" name="usuario.password" placeholder="senha">
             </div>
