@@ -21,7 +21,7 @@ Or you can just change the persistence.xml, adding this line
  Remember to first create the DB, just to avoid some error. 
 
 
-property name="hibernate.hbm2ddl.auto" value="update" <!-- create / create-drop / update -->
+property name="hibernate.hbm2ddl.auto" value="update" create / create-drop / update
 
 
 
