@@ -24,6 +24,7 @@ import javax.validation.constraints.NotNull;
  * @author igor
  */
 @Entity
+@DynamicUpdate
 public class Cidade implements AbstractDto<Integer>,Serializable {
 
     @Id
