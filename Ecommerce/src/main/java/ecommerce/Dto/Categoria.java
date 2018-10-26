@@ -20,6 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Categoria")
+@DynamicUpdate
 public class Categoria implements AbstractDto<Integer>,Serializable {
 
     @Id

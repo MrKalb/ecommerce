@@ -22,6 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "carrinho")
+@DynamicUpdate
 public class Carrinho implements AbstractDto<Integer>, Serializable {
 
     @Id
