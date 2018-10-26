@@ -25,6 +25,7 @@ import org.slf4j.MDC;
  * @author igor
  */
 @Entity
+@DynamicUpdate
 public class Estoque implements AbstractDto<Integer>,Serializable {
 
     @Id
