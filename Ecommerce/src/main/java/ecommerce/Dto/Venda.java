@@ -29,6 +29,7 @@ import javax.persistence.TemporalType;
  * @author igor
  */
 @Entity
+@DynamicUpdate
 public class Venda implements AbstractDto<Integer>, Serializable {
 
     @Id

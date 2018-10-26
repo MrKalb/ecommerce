@@ -29,6 +29,7 @@ import javax.validation.constraints.NotNull;
  */
 @Table(name = "Produto")
 @Entity
+@DynamicUpdate
 public class Produto implements AbstractDto<Integer>,Serializable {
     
     @Id
