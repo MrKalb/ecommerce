@@ -22,6 +22,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "formas_pagamento")
+@DynamicUpdate
 public class FormaPagamento implements AbstractDto<Integer>,Serializable {
 
     @Id
@@ -34,11 +35,22 @@ public class FormaPagamento implements AbstractDto<Integer>,Serializable {
     @NotNull
     private String descricao; 
     
+	private String parcelas; 
+	
     @Override
     public Integer getId() {
         return id; 
     }
 
+	
+	public void setParcelas(String parcelas){
+		this.parcelas = parcelas;	
+	}
+	
+	public String getParcelas(){
+		return this.parcelas; 
+	}
+	
     /**
      * @return the descricao
      */
