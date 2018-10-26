@@ -27,6 +27,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "itens_pedido")
+@DynamicUpdate
 public class ItemPedido implements AbstractDto<Integer>, Serializable {
     @Id
     @SequenceGenerator(name = "itens_pedido_id_seq", sequenceName = "itens_pedido_id_seq",allocationSize = 1)
