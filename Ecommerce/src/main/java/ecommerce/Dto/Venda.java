@@ -39,8 +39,6 @@ public class Venda implements AbstractDto<Integer>, Serializable {
     @Column(name = "id", columnDefinition = "serial")
     private Integer id;
 
-    //@SequenceGenerator(name = "venda_numero_pedido_seq", sequenceName = "venda_numero_pedido_seq", allocationSize = 1)
-   // @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "venda_numero_pedido_seq")
     @Column(name = "numero_pedido")
     private Integer numeroPedido;
 
