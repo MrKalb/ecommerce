@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "estado")
+@DynamicUpdate
 public class Estado implements AbstractDto<Integer>,Serializable {
 
     @Id
@@ -32,6 +33,17 @@ public class Estado implements AbstractDto<Integer>,Serializable {
     @Column(name = "nome")
     private String descricao; 
     
+	private String UF; 
+	
+	
+	public void setUF(String UF){
+		this.UF = UF;
+	}
+	
+	public String getUF(){
+		return this.UF;
+	}
+	
     @Override
     public Integer getId() {
         return this.id; 
